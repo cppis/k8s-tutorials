@@ -43,12 +43,16 @@ Delete a minikube cluster:
 $ minikube delete
 ```
 
-```shell
-$ eval $(minikube docker-env)
-```
-
+The command `minikube docker-env` returns a set of Bash environment variable  
+exports to configure your local environment to re-use the Docker daemon  
+inside the Minikube instance.  
 ```shell
 $ minikube docker-env
+```
+
+To point your terminal to use the docker daemon inside minikube run this:  
+```shell
+$ eval $(minikube docker-env)
 ```
 
 Load image to minikube:  
