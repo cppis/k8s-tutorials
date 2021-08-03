@@ -5,7 +5,7 @@
 ## Run  
 * Move to working path:  
 ```shell
-cd {Project Root}/tutorial.3/  
+cd {Project Root}/tutorial.1/  
 ```
 
 <br/>
