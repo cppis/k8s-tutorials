@@ -4,51 +4,65 @@
 
 ## Run  
 * Move to working path:  
-```shell
-cd {Project Root}/tutorial.1/  
-```
+  ```shell
+  cd {Project Root}/tutorial.1/  
+  ```
 
 <br/>
 
-* Build php app image if not exists:  
-```
-$ docker build . -t k8s-php:1.0.0
-```
+* Build php app image if not exists. and tag by `tut01-php:1.0.0`:  
+  ```
+  $ docker build . -t tut01-php:1.0.0
+  ```
 
 <br/>
 
-* Start minikube cluster(using-Minikube, non-WSL):  
-```
-$ minikube start
-$ minikube image load k8s-php:1.0.0
-```
+* **(Minikube Only)** Start a new minikube cluster:  
+  ```
+  $ minikube delete
+  $ minikube start
+  $ minikube image load tut01-php:1.0.0
+  ```
 
 > In WSL, You can also use `localhost` with the `{Node IP}` obtained as a result of  
 > executing command `minikube ip`
 
 <br/>
 
-* Create kubernetes workloads:  
-```shell
-$ kubectl apply -f resources/  
-  configmap/k8s-nginx-config created
-  pod/k8s-nginx-php created
-```
+* Create kubernetes resources:  
+  ```shell
+  $ kubectl apply -f resources/
+    configmap/tut01-nginx-config created
+    pod/tut01-nginx-php created
+  ```
 
 <br/>
 
-* Expose service:  
-```shell
-$ kubectl expose pod k8s-nginx-php --type=NodePort --port=80
-```
+* Expose pod:  
+  ```shell
+  $ kubectl expose pod tut01-nginx-php --type=NodePort --port=80
+  ```
 
 <br/>
 
-* Get service url:  
-```shell
-$ minikube service k8s-nginx-php --url
-  {Service Url}
-```
+* Show all resources. And check *Running* Status:  
+  ```shell 
+  $ kubectl get all
+  NAME                  READY   STATUS    RESTARTS   AGE
+  pod/tut01-nginx-php   2/2     Running   0          18s
+
+  NAME                    TYPE      CLUSTER-IP    EXTERNAL-IP PORT(S)               AGE
+  service/kubernetes      ClusterIP 10.96.0.1     <none>      443/TCP               110d
+  service/tut01-nginx-php NodePort  10.106.152.89 <none>      80:{Service Port}/TCP 4s
+  ```
+
+<br/>
+
+* **(Minikube Only)** Get url to access to a service:  
+  ```shell
+  $ minikube service tut01-nginx-php --url
+    {Service Url}
+  ```
 
 <br/><br/><br/>
 
@@ -67,32 +81,31 @@ $ minikube service k8s-nginx-php --url
   $ docker inspect NAME|ID
   ```
 
-* Describe kubernetes service:  
-```shell
-$ $ kubectl describe service k8s-nginx-php
-```
+* Describe a specific kubernetes service:  
+  ```shell
+  $ kubectl describe service {Service}
+  ```
 
 <br/>
 
-* Check running app in the kubernetes:  
-```
-$ kubectl get all
-$ wget {Service Url}
-```
+* Get all resources in the kubernetes:  
+  ```
+  $ kubectl get all
+  ```
 
 <br/>
 
 * Run command `/bin/sh` in kubernetes pod:  
-```
-$ kubectl exec -it k8s-nginx-php -c nginx -- /bin/sh
-```
+  ```
+  $ kubectl exec -it tut01-nginx-php -c nginx -- /bin/sh
+  ```
 
 <br/>
 
-* Delete minikube cluster(using-Minikube, non-WSL):  
-```
-$ minikube delete
-```
+* **(Minikube Only)** Delete minikube cluster(using-Minikube, non-WSL):  
+  ```
+  $ minikube delete
+  ```
 
 <br/><br/><br/>
 
