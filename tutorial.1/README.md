@@ -1,5 +1,7 @@
 # tutorial.1
 
+This tutorial shows how to create a `nginx+php-fpm` app in a Kubernetes. 
+
 <br/><br/><br/>
 
 ## Run  
@@ -17,19 +19,18 @@
 
 <br/>
 
-* **(Minikube Only)** Start a new minikube cluster:  
+* **(Minikube Only)** To start a new minikube cluster.  
+  Run the following command:  
   ```
   $ minikube delete
   $ minikube start
   $ minikube image load tut01-php:1.0.0
   ```
 
-> In WSL, You can also use `localhost` with the `{Node IP}` obtained as a result of  
-> executing command `minikube ip`
-
 <br/>
 
-* Create kubernetes resources:  
+* To create all kubernetes resources.  
+  Run the following command:  
   ```shell
   $ kubectl apply -f resources/
     configmap/tut01-nginx-config created
@@ -38,27 +39,42 @@
 
 <br/>
 
-* Expose pod:  
+* To expose a pod. Run the following command:  
   ```shell
   $ kubectl expose pod tut01-nginx-php --type=NodePort --port=80
   ```
 
 <br/>
 
-* Show all resources. And check *Running* Status:  
+* To check all resources are *Running* Status.  
+  Run the following command:  
   ```shell 
   $ kubectl get all
-  NAME                  READY   STATUS    RESTARTS   AGE
-  pod/tut01-nginx-php   2/2     Running   0          18s
-
-  NAME                    TYPE      CLUSTER-IP    EXTERNAL-IP PORT(S)               AGE
-  service/kubernetes      ClusterIP 10.96.0.1     <none>      443/TCP               110d
-  service/tut01-nginx-php NodePort  10.106.152.89 <none>      80:{Service Port}/TCP 4s
+    NAME                  READY   STATUS    RESTARTS   AGE
+    pod/tut01-nginx-php   2/2     Running   0          18s
+  ...
   ```
+
+<br/><br/><br/>
+
+## Test  
+* To get the Access URL to service. view all resources and get {Service Port}:  
+  ```shell 
+  $ kubectl get all
+    ...
+    NAME                    TYPE      CLUSTER-IP    EXTERNAL-IP PORT(S)               AGE
+    service/kubernetes      ClusterIP 10.96.0.1     <none>      443/TCP               110d
+    service/tut01-nginx-php NodePort  10.106.152.89 <none>      80:{Service Port}/TCP 4s
+  ```
+
+  Without minikube, Target URL is a `localhost:{Service Port}`  
+  With minikube, Target URL is `{Node IP}:{Service Port}` and `{Node IP}` is obtained  
+  as a result of executing `minikube ip`  
 
 <br/>
 
-* **(Minikube Only)** Get url to access to a service:  
+* **(Minikube Only)** Get url to access to a service.  
+  Run the following command:  
   ```shell
   $ minikube service tut01-nginx-php --url
     {Service Url}
@@ -81,28 +97,30 @@
   $ docker inspect NAME|ID
   ```
 
-* Describe a specific kubernetes service:  
+* To describe a specific kubernetes service.  
+  Run the following command:  
   ```shell
   $ kubectl describe service {Service}
   ```
 
 <br/>
 
-* Get all resources in the kubernetes:  
+* To get all resources in the kubernetes. Run the following command:  
   ```
   $ kubectl get all
   ```
 
 <br/>
 
-* Run command `/bin/sh` in kubernetes pod:  
+* To run command `/bin/sh` in kubernetes pod.  
+  Run the following command:  
   ```
   $ kubectl exec -it tut01-nginx-php -c nginx -- /bin/sh
   ```
 
 <br/>
 
-* **(Minikube Only)** Delete minikube cluster(using-Minikube, non-WSL):  
+* **(Minikube Only)** To delete minikube cluster. Run the following command:  
   ```
   $ minikube delete
   ```

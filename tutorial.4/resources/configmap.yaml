@@ -1,0 +1,28 @@
+# The ConfigMap MUST be created first for the ingress controller to be able to
+# find it when the Ingress object is created.
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tut03-cm
+data:
+  SCRIPT_FILENAME: "/app/index.php"
+
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/backend-protocol: "FCGI"
+    nginx.ingress.kubernetes.io/fastcgi-index: "index.php"
+    nginx.ingress.kubernetes.io/fastcgi-params-configmap: "tut03-cm"
+  name: tut03-app
+spec:
+  rules:
+    - host: tut03.app.com
+      http:
+        paths:
+          - backend:
+              serviceName: tut03-service
+              servicePort: fastcgi

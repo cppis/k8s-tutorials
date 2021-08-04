@@ -1,0 +1,48 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php7-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: php7
+  template:
+    metadata:
+      labels:
+        app: php7
+    spec:
+      containers:
+        - name: php7
+          image: tut01-php:1.0.0
+          ports:
+            - containerPort: 9000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.21.0
+            volumeMounts:
+              - name: shared-files
+                mountPath: /var/www/html
+              - name: tut03-nginx-volume
+                mountPath: /etc/nginx/nginx.conf
+                subPath: nginx.conf
+          ports:
+            - containerPort: 80
+          configMap:
+            name: tut03-nginx-config
