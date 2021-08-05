@@ -1,81 +1,141 @@
 # tutorial.3
 
-This tutorial shows simple template for starting a PHP 7 application served by NGINX,  
-using Kubernetes (K8S) deployment object. This also works with Minikube, to aid in  
-learning how to use K8S on a local machine. 
+This tutorial shows [`Nginx, PHP-Fpm and MySQL on Kubernetes local environment`](https://sergiosicari.medium.com/nginx-php-fpm-and-mysql-on-kubernetes-local-environment-7d01b8e6feae). 
 
+> This tutorial uses a `tut01-php:1.0.0` image,  
+> Which is built from Dockerfile in [tutorial.1](../tutorial.1/README.md)   
+ 
 <br/><br/><br/>
 
 ## Run  
-### Locally via Minikube
-1. Start [Minikube](https://github.com/kubernetes/minikube):
+### Create PHP-FPM *Service*  
+A *service* allows access to a set of *pods* from within the cluster.  
+*Services* within a cluster can communicate directly through their names,  
+without IP addresses. The PHP-FPM *service* will allow access to the PHP-FPM *pods*.  
+  ```shell
+  $ kubectl apply -f resources/service/php.yaml
+  ```
 
-    ```bash
-    $ minikube start
-    Starting local Kubernetes cluster...
-    Kubectl is now configured to use the cluster.
-    ```
-    **Optional:** Use xhyve driver for Docker instead of Virtualbox.
+<br/>
 
-    - Follow Minikube documentation on [installing the xhyve driver](https://github.com/kubernetes/minikube/blob/master/DRIVERS.md#xhyve-driver).
-    - Pass the `--vm-driver` argument to "Start Minikube".
+### Create *Persistent Volume*  
+A *Persistent Volume*, or *PV*, is block storage of a specified size that lives   
+independently of a *pod*’s life cycle.  
+Using a *Persistent Volume* will allow you to manage or update your *pods*  
+without worrying about losing your application code.  
+A *Persistent Volume* is accessed by using a *PersistentVolumeClaim*, or *PVC*,  
+which mounts the *PV* at the required path.  
+  ```shell
+  $ kubectl apply -f resources/volume/app.yaml
+  ```
 
-        ```bash
-        minikube start --vm-driver=xhyve
-        ```
-2. Create a K8S service:
+<br/>
 
-    ```bash
-    $ kubectl create -f resources/k8s/services/local-service.yaml
-    service "local-service" created
-    ```
-3. Create a K8S deployment:
+### Create PHP-FPM *Deployment*  
+*Deployments* provide a uniform way to create, update, and manage *pods*  
+by using *ReplicaSets*.  
+If an update does not work as expected, a *Deployment* will automatically  
+rollback its *pods* to a previous image.  
+  ```shell
+  $ kubectl apply -f resources/deployment/php.yaml
+  ```
 
-    ```bash
-    $ kubectl create -f resources/k8s/deployments/local-deployment.yaml
-    deployment "local-deployment" created
-    ```
-    **Optional:** Mount local work into the container.
+It will take some time for the *pods* status to become `podInitializing`.  
+  ```shell
+  $ kubectl get pods
+    NAME                     READY     STATUS            RESTARTS   AGE
+    php-7894656896-jlp4l     0/1       podInitializing   0          24s
+  ```
 
-    - Add the a volume info to `resources/k8s/deployments/local-deployment.yaml`:
+Once it’s completed you will have your *pod* `running`.
+  ```shell
+  NAME                     READY     STATUS     RESTARTS   AGE
+  php-7894656896-jlp4l     1/1       Running    0          1m
+  ```
 
-        ```diff
-                image: rabellamy/php7:0.1.0
-                ports:
-                - containerPort: 9000
-        +        volumeMounts:
-        +        - mountPath: /var/www/html
-        +          name: app
-        +      volumes:
-        +      - name: app
-        +        hostPath:
-        +          path: /PATH/TO/NGINX-PHP-7-K8S-Deployment/app
-        ```
-4. Get the URL for the NGINX service that will serve your PHP 7 app:
+#### Reference  
+* [Init Containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)  
+* [Kubernetes Patterns : The Init Container Pattern](https://www.magalix.com/blog/kubernetes-patterns-the-init-container-pattern)  
 
-    ```bash
-    $ minikube service nginx-service --url
-    ```
-    Note, you may see this message until the pods are ready:
-    > Waiting, endpoint for service is not ready yet...
-5. [Clean up when you're done](https://www.youtube.com/watch?v=PJhXVg2QisM):
+<br/>
 
-    ```bash
-    $ minikube delete
-    Deleting local Kubernetes cluster...
-    Machine deleted.
-    ````
+### Create Nginx Configuration  
+In this step, you will use a *ConfigMap* to configure Nginx.  
+A *ConfigMap* holds your configuration in a key-value format that you can  
+reference in other Kubernetes object definitions.  
+  ```shell
+  $ kubectl apply -f resources/configmap/nginx.yaml
+  ```
 
-<br/><br/><br/>
+### Create Nginx *Deployment*  
+Next, you will specify the image to create your *pod* from.  
+This tutorial will use the `nginx:1.14.2` image for stability, but you can  
+find other Nginx images on the Docker store.  
+Also, make Nginx available on port `80`.  
+  ```shell
+  $ kubectl apply -f resources/deployment/nginx.yaml
+  ```
 
-## Why?  
-We wanted an example of an NGINX and PHP 7 template using the Kubernetes  
-deployment object, and straight K8S configs, but to our knowledge none  
-previously existed. Here you go!
+You can view the pods that this *Deployment* started with the following command:  
+  ```shell
+  $ kubectl get pods
+    nginx-548b4c679b-mnbj7   1/1       Running   0          5m
+    php-7894656896-jlp4l     1/1       Running   0          9m  
+  ```
+<br/>
 
-For a templatized solution, consider [Helm Charts](https://github.com/kubernetes/charts).
+### Expose your Application  
+Now everything is in place and you can expose your application to internet.  
+To do this you can run the following command to create a *Load Balancer*  
+which provides you an external IP.  
+```shell
+$ kubectl expose deployment nginx --type=NodePort --port=80
+```
+
+> Note: The `type=LoadBalancer` service is backed by external cloud providers,  
+> which is not covered in this example, please refer to [this page](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer) for the details.
+ 
+> Note: If the external IP address is shown as <pending>,  
+> wait for a minute and enter the same command again. 
+
+<br/>
+
+### Summary commands  
+Create all resources:   
+  ```shell
+  $ kubectl apply -f resources/service/php.yaml
+  $ kubectl apply -f resources/volume/app.yaml
+  $ kubectl apply -f resources/deployment/php.yaml
+  $ kubectl apply -f resources/configmap/nginx.yaml
+  $ kubectl apply -f resources/deployment/nginx.yaml
+  $ kubectl expose deployment nginx --type=NodePort --port=80
+  ```
+
+Delete all resources:   
+  ```shell
+  $ kubectl delete service nginx
+  $ kubectl delete -f resources/deployment/nginx.yaml
+  $ kubectl delete -f resources/configmap/nginx.yaml
+  $ kubectl delete -f resources/deployment/php.yaml
+  $ kubectl delete -f resources/volume/app.yaml
+  $ kubectl delete -f resources/service/php.yaml
+  ```
+
+<br/>
+
+> Configuration Files in the same path(resources/deployment) can be  
+> executed at once with the following command:  
+> ```shell
+> $ kubectl apply -f resources/deployment
+> ```
 
 <br/><br/><br/>
 
 ## References  
-* [NGINX PHP 7 K8S Deployment](https://github.com/scottrigby/NGINX-PHP-7-K8S-Deployment)  
+* [Kubernetes Basic PHP 7.3 Application with Nginx on Google Cloud](https://www.cloudbooklet.com/kubernetes-basic-php-application-with-nginx-on-google-cloud/)  
+* [Configuration Best Practices](https://kubernetes.io/docs/concepts/configuration/overview/)  
+  * ["Naked" Pods versus ReplicaSets, Deployments, and Jobs](https://kubernetes.io/docs/concepts/configuration/overview/#naked-pods-vs-replicasets-deployments-and-jobs)  
+    Don't use naked Pods (that is, Pods not bound to a [ReplicaSet](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/) or [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)) if you can avoid it. Naked Pods will not be rescheduled in the event of a node failure.
+
+    A Deployment, which both creates a ReplicaSet to ensure that the desired number of Pods is always available, and specifies a strategy to replace Pods (such as [RollingUpdate](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-update-deployment)), is almost always preferable to creating Pods directly, except for some explicit [restartPolicy: Never](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy) scenarios. A [Job](https://kubernetes.io/docs/concepts/workloads/controllers/job/) may also be appropriate
+* [Deploying PHP Apps to Kubernetes – Michelle Krejci (DevNet Create 2017)](https://www.youtube.com/watch?v=au_CSyYR5lc)  

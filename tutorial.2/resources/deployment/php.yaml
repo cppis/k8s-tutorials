@@ -18,21 +18,10 @@ spec:
     spec:
       volumes:
       - name: app
-        persistentVolumeClaim:
-          claimName: app
+        emptyDir: {}
       containers:
       - name: php
         image: tut01-php:1.0.0
         volumeMounts:
-        - name: app
-          mountPath: /var/www/html
-      initContainers:
-      - name: install
-        image: tut01-php:1.0.0
-        volumeMounts:
-        - name: app
-          mountPath: /var/www/html
-        command:
-        - /bin/sh
-        - "-c"
-        - "cp -r /app/. /var/www/html && chmod 755 -R /var/www/html && chown www-data:www-data -R /var/www/html"
+          - name: app
+            mountPath: /app

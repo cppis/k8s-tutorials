@@ -1,9 +1,10 @@
 # tutorial.2
+This tutorial shows [`Nginx, PHP-Fpm and MySQL on Kubernetes local environment`](https://sergiosicari.medium.com/nginx-php-fpm-and-mysql-on-kubernetes-local-environment-7d01b8e6feae) without PersistentVolume  
 
-This tutorial shows [`Nginx, PHP-Fpm and MySQL on Kubernetes local environment`](https://sergiosicari.medium.com/nginx-php-fpm-and-mysql-on-kubernetes-local-environment-7d01b8e6feae). 
+Tutorial failed with error `403 Forbidden (nginx/1.14.2)`  
 
-> This tutorial uses a `tut01-php:1.0.0` image.  
-> This image is built from Dockerfile in [tutorial.1](../tutorial.1/README.md)   
+> This tutorial uses a `tut01-php:1.0.0` image,  
+> Which is built from Dockerfile in [tutorial.1](../tutorial.1/README.md)   
  
 <br/><br/><br/>
 
@@ -104,7 +105,6 @@ $ kubectl expose deployment nginx --type=NodePort --port=80
 Create all resources:   
   ```shell
   $ kubectl apply -f resources/service/php.yaml
-  $ kubectl apply -f resources/volume/app.yaml
   $ kubectl apply -f resources/deployment/php.yaml
   $ kubectl apply -f resources/configmap/nginx.yaml
   $ kubectl apply -f resources/deployment/nginx.yaml
@@ -117,7 +117,6 @@ Delete all resources:
   $ kubectl delete -f resources/deployment/nginx.yaml
   $ kubectl delete -f resources/configmap/nginx.yaml
   $ kubectl delete -f resources/deployment/php.yaml
-  $ kubectl delete -f resources/volume/app.yaml
   $ kubectl delete -f resources/service/php.yaml
   ```
 
@@ -138,3 +137,4 @@ Delete all resources:
     Don't use naked Pods (that is, Pods not bound to a [ReplicaSet](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/) or [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)) if you can avoid it. Naked Pods will not be rescheduled in the event of a node failure.
 
     A Deployment, which both creates a ReplicaSet to ensure that the desired number of Pods is always available, and specifies a strategy to replace Pods (such as [RollingUpdate](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-update-deployment)), is almost always preferable to creating Pods directly, except for some explicit [restartPolicy: Never](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy) scenarios. A [Job](https://kubernetes.io/docs/concepts/workloads/controllers/job/) may also be appropriate
+* [Deploying PHP Apps to Kubernetes – Michelle Krejci (DevNet Create 2017)](https://www.youtube.com/watch?v=au_CSyYR5lc)  

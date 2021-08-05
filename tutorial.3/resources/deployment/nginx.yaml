@@ -18,7 +18,8 @@ spec:
     spec:
       volumes:
       - name: app
-        emptyDir: {}
+        persistentVolumeClaim:
+          claimName: app
       - name: config
         configMap:
           name: nginx-config
@@ -32,6 +33,6 @@ spec:
         - containerPort: 80
         volumeMounts:
         - name: app
-          mountPath: /app
+          mountPath: /var/www/html
         - name: config
           mountPath: /etc/nginx/conf.d
