@@ -2,6 +2,9 @@
 
 This tutorial shows [`Nginx, PHP-Fpm and MySQL on Kubernetes local environment`](https://sergiosicari.medium.com/nginx-php-fpm-and-mysql-on-kubernetes-local-environment-7d01b8e6feae). 
 
+> This tutorial uses a `tut01-php:1.0.0` image.  
+> This image is built from Dockerfile in [tutorial.1](../tutorial.1/README.md)   
+ 
 <br/><br/><br/>
 
 ## Run  
