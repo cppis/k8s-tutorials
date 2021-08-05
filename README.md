@@ -16,36 +16,6 @@
 ### [tutorial.2](tutorial.2/README.md)  
 * [Kubernetes Basic PHP 7.3 Application with Nginx on Google Cloud](https://www.cloudbooklet.com/kubernetes-basic-php-application-with-nginx-on-google-cloud/)  
 
-<br/>
-
-### [tutorial.3](tutorial.3/README.md)  
-* [NGINX PHP 7 K8S Deployment](https://github.com/scottrigby/NGINX-PHP-7-K8S-Deployment)  
-  failed  
-
-<br/>
-
-### [tutorial.4](tutorial.4/README.md)  
-* [Exposing FastCGI Servers](https://kubernetes.github.io/ingress-nginx/user-guide/fcgi-services/)  
-  failed  
-
-<br/>
-
-### [tutorial.5](tutorial.5/README.md)  
-* [How To Deploy a PHP Application with Kubernetes on Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-php-application-with-kubernetes-on-ubuntu-18-04)  
-  failed  
-
-<br/>
-
-### [tutorial.6](tutorial.6/README.md)  
-* [Nginx, PHP-Fpm and MySQL on Kubernetes local environment](https://sergiosicari.medium.com/nginx-php-fpm-and-mysql-on-kubernetes-local-environment-7d01b8e6feae)  
-  failed  
-
-<br/>
-
-### [tutorial.7](tutorial.7/README.md)  
-* [Nginx, PHP-Fpm and MySQL on Kubernetes local environment](https://sergiosicari.medium.com/nginx-php-fpm-and-mysql-on-kubernetes-local-environment-7d01b8e6feae)  
-  failed  
-
 <br/><br/><br/>
 
 ## Tips  
