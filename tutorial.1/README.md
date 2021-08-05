@@ -13,7 +13,7 @@ This tutorial shows how to create a `nginx+php-fpm` app in a Kubernetes.
 <br/>
 
 * Build php app image if not exists. and tag by `tut01-php:1.0.0`:  
-  ```
+  ```shell
   $ docker build . -t tut01-php:1.0.0
   ```
 

@@ -26,18 +26,18 @@ learning how to use K8S on a local machine.
 2. Create a K8S service:
 
     ```bash
-    $ kubectl create -f resources/kubernetes/services/local-service.yaml
+    $ kubectl create -f resources/k8s/services/local-service.yaml
     service "local-service" created
     ```
 3. Create a K8S deployment:
 
     ```bash
-    $ kubectl create -f resources/kubernetes/deployments/local-deployment.yaml
+    $ kubectl create -f resources/k8s/deployments/local-deployment.yaml
     deployment "local-deployment" created
     ```
     **Optional:** Mount local work into the container.
 
-    - Add the a volume info to `resources/kubernetes/deployments/local-deployment.yaml`:
+    - Add the a volume info to `resources/k8s/deployments/local-deployment.yaml`:
 
         ```diff
                 image: rabellamy/php7:0.1.0

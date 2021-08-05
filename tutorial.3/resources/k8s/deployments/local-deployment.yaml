@@ -2,28 +2,60 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: php7-deployment
+  name: php-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: php7
+      app: php
   template:
     metadata:
       labels:
-        app: php7
+        app: php
     spec:
       containers:
-        - name: php7
+        - name: php
           image: tut01-php:1.0.0
           ports:
             - containerPort: 9000
+          volumeMounts:
+            - name: shared-files
+              mountPath: /var/www/html
+          # Important! After this container has started, the PHP files
+          # in our Docker image aren't in the shared volume. We need to
+          # get them into the shared volume. If we tried to write directly
+          # to this volume from our Docker image the files wouldn't appear
+          # in the nginx container.
+          #
+          # So, after the container has started, copy the PHP files from this
+          # container's local filesystem (/app -- added via the Docker image)
+          # to the shared volume, which is mounted at /var/www/html.
+          lifecycle:
+            postStart:
+              exec:
+                #command: ["/bin/sh", "-c", "cp -r /app/. /var/www/html"]
+                command:
+                  [
+                    "/bin/sh",
+                    "-c",
+                    "cp -r /app/. /var/www/html && chmod 755 -R /var/www/html && chown www-data:www-data -R /var/www/html",
+                  ]
+                #command: ["/bin/sh", "-c", "cp -r /app/. /var/www/html && chown www-data:www-data -R /var/www/html"]
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment
 spec:
+  volumes:
+    # Create the shared files volume to be used in both pods
+    - name: shared-files
+      emptyDir: {}
+
+    # Add the ConfigMap we declared above as a volume for the pod
+    - name: tut01-nginx-volume
+      configMap:
+        name: tut01-nginx-config
   replicas: 1
   selector:
     matchLabels:
@@ -36,13 +68,22 @@ spec:
       containers:
         - name: nginx
           image: nginx:1.21.0
-            volumeMounts:
-              - name: shared-files
-                mountPath: /var/www/html
-              - name: tut03-nginx-volume
-                mountPath: /etc/nginx/nginx.conf
-                subPath: nginx.conf
           ports:
-            - containerPort: 80
-          configMap:
-            name: tut03-nginx-config
+          - containerPort: 80
+          volumeMounts:
+          - mountPath: /etc/nginx # mount nginx-conf volumn to /etc/nginx
+            readOnly: true
+            name: nginx-conf
+          - mountPath: /var/log/nginx
+            name: log
+      volumes:
+      - name: nginx-config
+        configMap:
+          name: nginx-config # place ConfigMap `nginx-conf` on /etc/nginx
+          items:
+            - key: nginx.conf
+              path: nginx.conf
+            - key: virtualhost.conf
+              path: virtualhost/virtualhost.conf # dig directory
+      - name: log
+        emptyDir: {}
