@@ -99,24 +99,32 @@ $ kubectl expose deployment nginx --type=NodePort --port=80
 
 ### Summary commands  
 Create all resources:   
-```shell
-$ kubectl apply -f resources/service/php.yaml
-$ kubectl apply -f resources/volume/app.yaml
-$ kubectl apply -f resources/deployment/php.yaml
-$ kubectl apply -f resources/configmap/nginx.yaml
-$ kubectl apply -f resources/deployment/nginx.yaml
-$ kubectl expose deployment nginx --type=NodePort --port=80
-```
+  ```shell
+  $ kubectl apply -f resources/service/php.yaml
+  $ kubectl apply -f resources/volume/app.yaml
+  $ kubectl apply -f resources/deployment/php.yaml
+  $ kubectl apply -f resources/configmap/nginx.yaml
+  $ kubectl apply -f resources/deployment/nginx.yaml
+  $ kubectl expose deployment nginx --type=NodePort --port=80
+  ```
 
 Delete all resources:   
-```shell
-$ kubectl delete service nginx
-$ kubectl delete -f resources/deployment/nginx.yaml
-$ kubectl delete -f resources/configmap/nginx.yaml
-$ kubectl delete -f resources/deployment/php.yaml
-$ kubectl delete -f resources/volume/app.yaml
-$ kubectl delete -f resources/service/php.yaml
-```
+  ```shell
+  $ kubectl delete service nginx
+  $ kubectl delete -f resources/deployment/nginx.yaml
+  $ kubectl delete -f resources/configmap/nginx.yaml
+  $ kubectl delete -f resources/deployment/php.yaml
+  $ kubectl delete -f resources/volume/app.yaml
+  $ kubectl delete -f resources/service/php.yaml
+  ```
+
+<br/>
+
+> Configuration Files in the same path(resources/deployment) can be  
+> executed at once with the following command:  
+> ```shell
+> $ kubectl apply -f resources/deployment
+> ```
 
 <br/><br/><br/>
 
