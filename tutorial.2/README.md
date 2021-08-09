@@ -1,7 +1,14 @@
-# tutorial.2
+# tutorial.2  
+
 This tutorial shows [`Nginx, PHP-Fpm and MySQL on Kubernetes local environment`](https://sergiosicari.medium.com/nginx-php-fpm-and-mysql-on-kubernetes-local-environment-7d01b8e6feae) without PersistentVolume  
 
-Tutorial failed with error `403 Forbidden (nginx/1.14.2)`  
+<figure>
+<div style="text-align:center">
+  <a href="https://drive.google.com/uc?export=view&id=1QpH2nVmUOwrx9nfv3S0QJKeilWSb9ClO">
+  <img src="https://drive.google.com/uc?export=view&id=1QpH2nVmUOwrx9nfv3S0QJKeilWSb9ClO" style="width: 480px; max-width: 100%; height: auto" title="tutorial.2" />
+  </a>
+</div>
+</figure>
 
 > This tutorial uses a `tut01-php:1.0.0` image,  
 > Which is built from Dockerfile in [tutorial.1](../tutorial.1/README.md)   

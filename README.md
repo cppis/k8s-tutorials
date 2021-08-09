@@ -33,6 +33,14 @@ that enables you to build and share containerized applications and microservices
 ### [tutorial.2](tutorial.2/README.md)  
 * [Kubernetes Basic PHP 7.3 Application with Nginx on Google Cloud](https://www.cloudbooklet.com/kubernetes-basic-php-application-with-nginx-on-google-cloud/) without PersistentVolume  
 
+<figure>
+<div style="text-align:center">
+  <a href="https://drive.google.com/uc?export=view&id=1QpH2nVmUOwrx9nfv3S0QJKeilWSb9ClO">
+  <img src="https://drive.google.com/uc?export=view&id=1YjRNN7XGG3XjnKdBK5cv4JQG-9dMkLU5" style="width: 360px; max-width: 100%; height: auto" title="tutorial.2" />
+  </a>
+</div>
+</figure>
+
 > This tutorial uses a `tut01-php:1.0.0` image,  
 > Which built using a Dockerfile in [tutorial.1](./tutorial.1/README.md)  
 
