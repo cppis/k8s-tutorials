@@ -19,7 +19,7 @@ spec:
       volumes:
         - name: tut03-volume
           persistentVolumeClaim:
-            claimName: tut03-volume
+            claimName: tut03-volume-claim
       containers:
         - name: php
           image: php:7-fpm

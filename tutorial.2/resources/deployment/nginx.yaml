@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: tut02-nginx
   labels:
     tier: backend
 spec:
@@ -19,7 +19,7 @@ spec:
       volumes:
         - name: tut02-volume
           persistentVolumeClaim:
-            claimName: tut02-volume
+            claimName: tut02-volume-claim
         - name: config
           configMap:
             name: tut02-nginx-config

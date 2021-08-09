@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: tut03-volume-claim
+  name: tut05-volume-claim
 spec:
   accessModes:
     - ReadWriteOnce

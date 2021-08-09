@@ -1,6 +1,6 @@
 # tutorial.4
 
-* Shows remove use of persistent volume in [tutorial.2](tutorial.2/README.md). 
+Shows remove use of persistent volume in [tutorial.2](tutorial.2/README.md). 
 
 <br/><br/><br/>
 
@@ -55,7 +55,7 @@ Now everything is in place and you can expose your application to internet.
 To do this you can run the following command to create a *Load Balancer*  
 which provides you an external IP.  
 ```shell
-$ kubectl expose deployment nginx --type=NodePort --port=80
+$ kubectl expose deployment tut04-nginx-php --type=NodePort --port=80
 ```
 
 > Note: The `type=LoadBalancer` service is backed by external cloud providers,  
@@ -71,12 +71,12 @@ Create all resources:
   ```shell
   $ kubectl apply -f resources/configmap
   $ kubectl apply -f resources/deployment
-  $ kubectl expose deployment nginx --type=NodePort --port=80
+  $ kubectl expose deployment tut04-nginx-php --type=NodePort --port=80
   ```
 
 Delete all resources:   
   ```shell
-  $ kubectl delete service nginx
+  $ kubectl delete service tut04-nginx-php
   $ kubectl delete -f resources/deployment
   $ kubectl delete -f resources/configmap
   ```

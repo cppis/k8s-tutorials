@@ -70,6 +70,26 @@ that enables you to build and share containerized applications and microservices
 > This tutorial uses a `tut01-php:1.0.0` image,  
 > Which is built from Dockerfile in [tutorial.1](./tutorial.1/README.md)   
 
+<br/>
+
+### [tutorial.5](tutorial.5/README.md)  
+* Using unix socket for fastcgi_pass in [tutorial.4](tutorial.4/README.md). 
+
+working...
+
+> This tutorial uses a `tut01-php:1.0.0` image,  
+> Which is built from Dockerfile in [tutorial.1](./tutorial.1/README.md)  
+
+<br/>
+
+### [tutorial.6](tutorial.5/README.md)  
+* Using unix socket for fastcgi_pass in [tutorial.2](tutorial.4/README.md) with persistent volume. 
+
+working...
+
+> This tutorial uses a `tut01-php:1.0.0` image,  
+> Which is built from Dockerfile in [tutorial.1](./tutorial.1/README.md)  
+
 <br/><br/><br/>
 
 ## Tips  

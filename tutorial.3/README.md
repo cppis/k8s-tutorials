@@ -1,6 +1,6 @@
 # tutorial.3  
 
-* [tutorial.2](tutorial.2/README.md) and deploy a new php container.  
+[tutorial.2](tutorial.2/README.md) and deploy a new php container.  
 
 > This tutorial uses a `tut01-php:1.0.0` image,  
 > Which is built from Dockerfile in [tutorial.1](../tutorial.1/README.md)   

@@ -101,7 +101,7 @@ Now everything is in place and you can expose your application to internet.
 To do this you can run the following command to create a *Load Balancer*  
 which provides you an external IP.  
 ```shell
-$ kubectl expose deployment nginx --type=NodePort --port=80
+$ kubectl expose deployment tut02-nginx --type=NodePort --port=80
 ```
 
 > Note: The `type=LoadBalancer` service is backed by external cloud providers,  
@@ -125,7 +125,7 @@ Create all resources:
 
 Delete all resources:   
   ```shell
-  $ kubectl delete service nginx
+  $ kubectl delete service tut02-nginx
   $ kubectl delete -f resources/deployment/nginx.yaml
   $ kubectl delete -f resources/configmap/nginx.yaml
   $ kubectl delete -f resources/deployment/php.yaml

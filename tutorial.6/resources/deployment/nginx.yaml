@@ -17,12 +17,15 @@ spec:
         tier: backend
     spec:
       volumes:
-        - name: tut03-volume
+        - name: tut05-volume
           persistentVolumeClaim:
-            claimName: tut03-volume-claim
+            claimName: tut05-volume-claim
+        - name: tut05-sock
+          persistentVolumeClaim:
+            claimName: tut05-sock-claim
         - name: config
           configMap:
-            name: tut03-nginx-config
+            name: tut05-nginx-config
             items:
               - key: config
                 path: site.conf
@@ -32,7 +35,9 @@ spec:
           ports:
             - containerPort: 80
           volumeMounts:
-            - name: tut03-volume
+            - name: tut05-volume
               mountPath: /var/www/html
+            - name: tut05-sock
+              mountPath: /sock
             - name: config
               mountPath: /etc/nginx/conf.d
