@@ -1,5 +1,22 @@
 # k8s Tutorials  
 
+## Prerequisites  
+### [Docker Desktop](https://docs.docker.com/desktop/)  
+*Docker Desktop* is an easy-to-install application for your Mac or Windows environment  
+that enables you to build and share containerized applications and microservices.  
+* **Download and install**  
+  Docker Desktop is available for Mac and Windows.   
+  For download information, system requirements, and installation instructions, see:  
+  * [Install Docker Desktop on Mac](https://docs.docker.com/docker-for-mac/install/)  
+  * [Install Docker Desktop on Windows](https://docs.docker.com/docker-for-windows/install/)  
+* **Configure Docker Desktop**  
+  To learn about the various UI options and their usage, see:
+  * [Docker Desktop for Mac user manual](https://docs.docker.com/docker-for-mac/)  
+  * [Docker Desktop for Windows user manual](https://docs.docker.com/docker-for-windows/)  
+
+> The following tutorial did not use minikube,  
+> I checked it using only the Kubernetes cluster in *Docker Desktop*. 
+
 <br/><br/><br/>
 
 ## Tutorials  
@@ -16,15 +33,21 @@
 ### [tutorial.2](tutorial.2/README.md)  
 * [Kubernetes Basic PHP 7.3 Application with Nginx on Google Cloud](https://www.cloudbooklet.com/kubernetes-basic-php-application-with-nginx-on-google-cloud/) without PersistentVolume  
 
-Tutorial failed with error `403 Forbidden (nginx/1.14.2)`  
+> This tutorial uses a `tut01-php:1.0.0` image,  
+> Which built using a Dockerfile in [tutorial.1](./tutorial.1/README.md)  
+
+<br/>
+
+### [tutorial.3](tutorial.3/README.md)  
+* Shows [tutorial.2](tutorial.2/README.md) and deploy a new php container.  
 
 > This tutorial uses a `tut01-php:1.0.0` image,  
 > Which is built from Dockerfile in [tutorial.1](./tutorial.1/README.md)   
 
 <br/>
 
-### [tutorial.3](tutorial.3/README.md)  
-* [Kubernetes Basic PHP 7.3 Application with Nginx on Google Cloud](https://www.cloudbooklet.com/kubernetes-basic-php-application-with-nginx-on-google-cloud/)  
+### [tutorial.4](tutorial.4/README.md)  
+* Shows remove use of persistent volume in [tutorial.2](tutorial.2/README.md). 
 
 > This tutorial uses a `tut01-php:1.0.0` image,  
 > Which is built from Dockerfile in [tutorial.1](./tutorial.1/README.md)   

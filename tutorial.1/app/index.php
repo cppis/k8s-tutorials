@@ -1,3 +1,3 @@
 <?php
 
-echo "<h2>Hello PHP in k8s pod!</h2>";
+echo "<h2>Hello Tutorial in k8s pod!</h2>";

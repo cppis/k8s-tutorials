@@ -22,17 +22,18 @@ spec:
           claimName: app
       containers:
       - name: php
-        image: tut01-php:1.0.0
+        image: php:7-fpm
         volumeMounts:
         - name: app
           mountPath: /var/www/html
       initContainers:
       - name: install
-        image: tut01-php:1.0.0
+        image: busybox
         volumeMounts:
         - name: app
           mountPath: /var/www/html
         command:
-        - /bin/sh
-        - "-c"
-        - "cp -r /app/. /var/www/html && chmod 755 -R /var/www/html && chown www-data:www-data -R /var/www/html"
+        - wget
+        - "-O"
+        - "/var/www/html/index.php"
+        - https://raw.githubusercontent.com/videofalls/demo/master/index.php

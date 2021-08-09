@@ -1,5 +1,5 @@
-# Create a pod containing the PHP-FPM application (tut01-php)
-# and nginx, each mounting the `shared-files` volume to their
+# Create a pod containing the PHP-FPM application (app)
+# and nginx, each mounting the `app` volume to their
 # respective /var/www/html directories.
 
 kind: Pod
@@ -11,7 +11,7 @@ metadata:
 spec:
   volumes:
     # Create the shared files volume to be used in both pods
-    - name: shared-files
+    - name: app
       emptyDir: {}
 
     # Add the ConfigMap we declared above as a volume for the pod
@@ -24,7 +24,7 @@ spec:
     - image: tut01-php:1.0.0
       name: app
       volumeMounts:
-        - name: shared-files
+        - name: app
           mountPath: /var/www/html
       # Important! After this container has started, the PHP files
       # in our Docker image aren't in the shared volume. We need to
@@ -52,7 +52,7 @@ spec:
     - image: nginx:1.21.0
       name: nginx
       volumeMounts:
-        - name: shared-files
+        - name: app
           mountPath: /var/www/html
         - name: tut01-nginx-volume
           mountPath: /etc/nginx/nginx.conf

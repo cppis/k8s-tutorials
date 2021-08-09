@@ -1,6 +1,6 @@
-# tutorial.3
+# tutorial.3  
 
-This tutorial shows [`Nginx, PHP-Fpm and MySQL on Kubernetes local environment`](https://sergiosicari.medium.com/nginx-php-fpm-and-mysql-on-kubernetes-local-environment-7d01b8e6feae). 
+* [tutorial.2](tutorial.2/README.md) and deploy a new php container.  
 
 > This tutorial uses a `tut01-php:1.0.0` image,  
 > Which is built from Dockerfile in [tutorial.1](../tutorial.1/README.md)   
@@ -109,25 +109,18 @@ Create all resources:
   $ kubectl apply -f resources/configmap/nginx.yaml
   $ kubectl apply -f resources/deployment/nginx.yaml
   $ kubectl expose deployment nginx --type=NodePort --port=80
+
+  $ kubectl apply -f resources/deployment/php.new.yaml
   ```
 
 Delete all resources:   
   ```shell
   $ kubectl delete service nginx
-  $ kubectl delete -f resources/deployment/nginx.yaml
-  $ kubectl delete -f resources/configmap/nginx.yaml
-  $ kubectl delete -f resources/deployment/php.yaml
-  $ kubectl delete -f resources/volume/app.yaml
-  $ kubectl delete -f resources/service/php.yaml
+  $ kubectl delete -f resources/deployment
+  $ kubectl delete -f resources/configmap
+  $ kubectl delete -f resources/volume
+  $ kubectl delete -f resources/service
   ```
-
-<br/>
-
-> Configuration Files in the same path(resources/deployment) can be  
-> executed at once with the following command:  
-> ```shell
-> $ kubectl apply -f resources/deployment
-> ```
 
 <br/><br/><br/>
 
@@ -139,3 +132,4 @@ Delete all resources:
 
     A Deployment, which both creates a ReplicaSet to ensure that the desired number of Pods is always available, and specifies a strategy to replace Pods (such as [RollingUpdate](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-update-deployment)), is almost always preferable to creating Pods directly, except for some explicit [restartPolicy: Never](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy) scenarios. A [Job](https://kubernetes.io/docs/concepts/workloads/controllers/job/) may also be appropriate
 * [Deploying PHP Apps to Kubernetes – Michelle Krejci (DevNet Create 2017)](https://www.youtube.com/watch?v=au_CSyYR5lc)  
+* [Exposing FastCGI Servers](https://kubernetes.github.io/ingress-nginx/user-guide/fcgi-services/)  
