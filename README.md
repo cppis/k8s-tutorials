@@ -28,6 +28,14 @@ that enables you to build and share containerized applications and microservices
 ### [tutorial.1](tutorial.1/README.md)  
 * [PHP-FPM, Nginx, Kubernetes, and Docker](https://matthewpalmer.net/kubernetes-app-developer/articles/php-fpm-nginx-kubernetes.html)  
 
+<figure>
+<div style="text-align:center">
+  <a href="https://matthewpalmer.net/kubernetes-app-developer/articles/php-fpm-diagram.png">
+  <img src="https://matthewpalmer.net/kubernetes-app-developer/articles/php-fpm-diagram.png" style="width: 360px; max-width: 100%; height: auto" title="tutorial.2" />
+  </a>
+</div>
+</figure>
+
 <br/>
 
 ### [tutorial.2](tutorial.2/README.md)  
