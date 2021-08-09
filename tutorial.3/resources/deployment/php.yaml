@@ -17,20 +17,20 @@ spec:
         tier: backend
     spec:
       volumes:
-        - name: app
+        - name: tut03-volume
           persistentVolumeClaim:
-            claimName: app
+            claimName: tut03-volume
       containers:
         - name: php
           image: tut01-php:1.0.0
           volumeMounts:
-            - name: app
+            - name: tut03-volume
               mountPath: /var/www/html
       initContainers:
         - name: install
           image: tut01-php:1.0.0
           volumeMounts:
-            - name: app
+            - name: tut03-volume
               mountPath: /var/www/html
           command:
             - /bin/sh

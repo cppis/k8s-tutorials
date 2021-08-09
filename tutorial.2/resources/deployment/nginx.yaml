@@ -17,21 +17,22 @@ spec:
         tier: backend
     spec:
       volumes:
-      - name: app
-        emptyDir: {}
-      - name: config
-        configMap:
-          name: nginx-config
-          items:
-          - key: config
-            path: site.conf
-      containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
-        volumeMounts:
-        - name: app
-          mountPath: /app
+        - name: tut02-volume
+          persistentVolumeClaim:
+            claimName: tut02-volume
         - name: config
-          mountPath: /etc/nginx/conf.d
+          configMap:
+            name: tut02-nginx-config
+            items:
+              - key: config
+                path: site.conf
+      containers:
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: tut02-volume
+              mountPath: /var/www/html
+            - name: config
+              mountPath: /etc/nginx/conf.d

@@ -17,11 +17,22 @@ spec:
         tier: backend
     spec:
       volumes:
-      - name: app
-        emptyDir: {}
+        - name: tut02-volume
+          persistentVolumeClaim:
+            claimName: tut02-volume
       containers:
-      - name: php
-        image: tut01-php:1.0.0
-        volumeMounts:
-          - name: app
-            mountPath: /app
+        - name: php
+          image: tut01-php:1.0.0
+          volumeMounts:
+            - name: tut02-volume
+              mountPath: /var/www/html
+      initContainers:
+        - name: install
+          image: tut01-php:1.0.0
+          volumeMounts:
+            - name: tut02-volume
+              mountPath: /var/www/html
+          command:
+            - /bin/sh
+            - "-c"
+            - "cp -r /app/. /var/www/html && chmod 755 -R /var/www/html && chown www-data:www-data -R /var/www/html"

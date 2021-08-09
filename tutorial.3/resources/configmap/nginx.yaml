@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: nginx-config
+  name: tut03-nginx-config
   labels:
     tier: backend
 data:

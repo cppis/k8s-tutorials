@@ -17,23 +17,23 @@ spec:
         tier: backend
     spec:
       volumes:
-      - name: app
-        persistentVolumeClaim:
-          claimName: app
+        - name: tut03-volume
+          persistentVolumeClaim:
+            claimName: tut03-volume
       containers:
-      - name: php
-        image: php:7-fpm
-        volumeMounts:
-        - name: app
-          mountPath: /var/www/html
+        - name: php
+          image: php:7-fpm
+          volumeMounts:
+            - name: tut03-volume
+              mountPath: /var/www/html
       initContainers:
-      - name: install
-        image: busybox
-        volumeMounts:
-        - name: app
-          mountPath: /var/www/html
-        command:
-        - wget
-        - "-O"
-        - "/var/www/html/index.php"
-        - https://raw.githubusercontent.com/videofalls/demo/master/index.php
+        - name: install
+          image: busybox
+          volumeMounts:
+            - name: tut03-volume
+              mountPath: /var/www/html
+          command:
+            - wget
+            - "-O"
+            - "/var/www/html/index.php"
+            - https://raw.githubusercontent.com/videofalls/demo/master/index.php
