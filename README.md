@@ -41,6 +41,8 @@ that enables you to build and share containerized applications and microservices
 </div>
 </figure>
 
+<br/>
+
 > This tutorial uses a `tut01-php:1.0.0` image,  
 > Which built using a Dockerfile in [tutorial.1](./tutorial.1/README.md)  
 

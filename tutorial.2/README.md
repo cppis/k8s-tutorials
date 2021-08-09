@@ -2,6 +2,8 @@
 
 This tutorial shows [`Nginx, PHP-Fpm and MySQL on Kubernetes local environment`](https://sergiosicari.medium.com/nginx-php-fpm-and-mysql-on-kubernetes-local-environment-7d01b8e6feae) without PersistentVolume  
 
+<br/>
+
 <figure>
 <div style="text-align:center">
   <a href="https://drive.google.com/uc?export=view&id=1QpH2nVmUOwrx9nfv3S0QJKeilWSb9ClO">
@@ -9,6 +11,8 @@ This tutorial shows [`Nginx, PHP-Fpm and MySQL on Kubernetes local environment`]
   </a>
 </div>
 </figure>
+
+<br/>
 
 > This tutorial uses a `tut01-php:1.0.0` image,  
 > Which is built from Dockerfile in [tutorial.1](../tutorial.1/README.md)   
