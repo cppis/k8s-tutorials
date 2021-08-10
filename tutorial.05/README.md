@@ -66,6 +66,16 @@ $ kubectl expose deployment nginx --type=NodePort --port=80
 
 <br/>
 
+### Expose your Application  
+```shell
+$ kubectl exec -i -t {Pod Name} --container php -- /bin/bash
+```
+
+> `tut01-php:1.0.0` 의 
+> `www.conf` 파일 경로는 `/usr/local/etc/php-fpm.d` 입니다.  
+
+<br/>
+
 ### Summary commands  
 Create all resources:   
   ```shell
