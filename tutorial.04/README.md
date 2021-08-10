@@ -4,6 +4,13 @@ Shows remove use of persistent volume in [tutorial.02](../tutorial.02/README.md)
 
 <br/><br/><br/>
 
+## Objectives  
+* K8s deployment  
+  * Nginx container  
+  * PHP-FPM container   
+
+<br/><br/><br/>
+
 ## Run  
 Move to working path:  
   ```shell

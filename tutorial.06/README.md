@@ -9,6 +9,16 @@ Using unix socket for fastcgi_pass in [tutorial.02](../tutorial.02/README.md).
  
 <br/><br/><br/>
 
+## Objectives  
+* Create a k8s *deployment*  
+  * Nginx container  
+  * PHP-FPM container  
+    * Using unix socket for *fastcgi_pass*  
+* Create a k8s Persistent Volume  
+  * Bind the volume to the deployment  
+
+<br/><br/><br/>
+
 ## Run  
 ### Create PHP-FPM *Service*  
 A *service* allows access to a set of *pods* from within the cluster.  

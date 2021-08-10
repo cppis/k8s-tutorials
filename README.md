@@ -37,8 +37,8 @@ Written with reference to [PHP-FPM, Nginx, Kubernetes, and Docker](https://matth
 
 <figure>
 <div style="text-align:center">
-  <a href="https://matthewpalmer.net/kubernetes-app-developer/articles/php-fpm-diagram.png">
-  <img src="https://matthewpalmer.net/kubernetes-app-developer/articles/php-fpm-diagram.png" style="width: 360px; max-width: 100%; height: auto" title="tutorial.02" />
+  <a href="https://drive.google.com/uc?export=view&id=1eweNr6OMtE86-tRa0MfGTdy4Kfpyo_3u">
+  <img src="https://drive.google.com/uc?export=view&id=1tylVCpsrV2lAwzBqkQ_U-2MBLFMMeyWt" style="width: 360px; max-width: 100%; height: auto" title="tutorial.01" />
   </a>
 </div>
 </figure>
@@ -139,7 +139,7 @@ Using unix socket for fastcgi_pass in [tutorial.02](tutorial.02/README.md).
 
 <br/>
 
-  #### Objectives  
+#### Objectives  
 * Create a k8s *deployment*  
   * Nginx container  
   * PHP-FPM container  
@@ -249,7 +249,8 @@ $ minikube logs
   * [Images](https://kubernetes.io/docs/concepts/containers/images/)  
 * [Configuration](https://kubernetes.io/docs/concepts/configuration/)  
   * [Configuration Best Practices](https://kubernetes.io/docs/concepts/configuration/overview/)  
-  * [Managing Resources for Containers](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+  * [Managing Resources for Containers](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)  
+  * [Resource requests and limits of Pod and Container](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-requests-and-limits-of-pod-and-container)  
 * [Services, Load Balancing, and Networking](https://kubernetes.io/docs/concepts/services-networking/)  
   * [Service](https://kubernetes.io/docs/concepts/services-networking/service/)
   * [Connecting Applications with Services](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/)  

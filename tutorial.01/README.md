@@ -2,6 +2,16 @@
 
 This tutorial shows how to create a `nginx+php-fpm` app in a Kubernetes. 
 
+<br/>
+
+<figure>
+<div style="text-align:center">
+  <a href="https://drive.google.com/uc?export=view&id=1eweNr6OMtE86-tRa0MfGTdy4Kfpyo_3u">
+  <img src="https://drive.google.com/uc?export=view&id=1eweNr6OMtE86-tRa0MfGTdy4Kfpyo_3u" style="width: 560px; max-width: 100%; height: auto" title="tutorial.01" />
+  </a>
+</div>
+</figure>
+
 <br/><br/><br/>
 
 ## Run  

@@ -4,7 +4,17 @@ Shows deploy a new php container in [tutorial.02](tutorial.02/README.md).
 
 > This tutorial uses a `tut01-php:1.0.0` image,  
 > Which is built from Dockerfile in [tutorial.01](../tutorial.01/README.md)   
- 
+
+<br/><br/><br/>
+
+## Objectives  
+* Create a k8s *deployment*  
+  * Nginx container  
+  * PHP-FPM container  
+* Create a k8s *Persistent Volume*  
+  * Bind the volume to the *deployment*  
+* Deploy a new php container(*php.new.yaml*)  
+
 <br/><br/><br/>
 
 ## Run  

@@ -4,6 +4,14 @@ Using unix socket for fastcgi_pass in [tutorial.04](../tutorial.04/README.md).
 
 <br/><br/><br/>
 
+## Objectives  
+* K8s deployment  
+  * Nginx container  
+  * PHP-FPM container   
+    * Using unix socket for *fastcgi_pass*  
+
+<br/><br/><br/>
+
 ## Run  
 Move to working path:  
   ```shell

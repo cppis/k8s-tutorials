@@ -14,7 +14,7 @@ Written with reference to [Kubernetes Basic PHP 7.3 Application with Nginx on Go
 
 <br/>
 
-#### Objectives  
+## Objectives  
 * Create a k8s *deployment*  
   * Nginx container  
   * PHP-FPM container  
