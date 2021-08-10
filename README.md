@@ -1,6 +1,7 @@
 # k8s Tutorials  
 
 ## Prerequisites  
+----
 ### [Docker Desktop](https://docs.docker.com/desktop/)  
 *Docker Desktop* is an easy-to-install application for your Mac or Windows environment  
 that enables you to build and share containerized applications and microservices.  
@@ -20,7 +21,9 @@ that enables you to build and share containerized applications and microservices
 <br/><br/><br/>
 
 ## Tutorials  
+----
 ### [tutorial.00](tutorial.00/README.md)  
+----
 Written with reference to [Run a Stateless Application Using a Deployment](https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/)  
 
 <br/>
@@ -30,9 +33,10 @@ Written with reference to [Run a Stateless Application Using a Deployment](https
   * Nginx container  
 * Update the *deployment*  
 
-<br/>
+<br/><br/>
 
 ### [tutorial.01](tutorial.01/README.md)  
+----
 Written with reference to [PHP-FPM, Nginx, Kubernetes, and Docker](https://matthewpalmer.net/kubernetes-app-developer/articles/php-fpm-nginx-kubernetes.html)  
 
 <figure>
@@ -50,9 +54,10 @@ Written with reference to [PHP-FPM, Nginx, Kubernetes, and Docker](https://matth
   * Nginx container  
   * PHP-FPM container   
 
-<br/>
+<br/><br/>
 
 ### [tutorial.02](tutorial.02/README.md)  
+----
 Written with reference to [Kubernetes Basic PHP 7.3 Application with Nginx on Google Cloud](https://www.cloudbooklet.com/kubernetes-basic-php-application-with-nginx-on-google-cloud/).  
 
 <figure>
@@ -77,9 +82,10 @@ Written with reference to [Kubernetes Basic PHP 7.3 Application with Nginx on Go
 > This tutorial uses a `tut01-php:1.0.0` image,  
 > Which built using a Dockerfile in [tutorial.01](./tutorial.01/README.md)  
 
-<br/>
+<br/><br/>
 
 ### [tutorial.03](tutorial.03/README.md)  
+----
 Shows deploy a new php container in [tutorial.02](tutorial.02/README.md).  
 
 > This tutorial uses a `tut01-php:1.0.0` image,  
@@ -97,9 +103,10 @@ Shows deploy a new php container in [tutorial.02](tutorial.02/README.md).
   * Bind the volume to the *deployment*  
 * Deploy a new php container(*php.new.yaml*)  
 
-<br/>
+<br/><br/>
 
 ### [tutorial.04](tutorial.04/README.md)  
+----
 Shows remove use of persistent volume in [tutorial.02](tutorial.02/README.md). 
 
 > This tutorial uses a `tut01-php:1.0.0` image,  
@@ -112,9 +119,10 @@ Shows remove use of persistent volume in [tutorial.02](tutorial.02/README.md).
   * Nginx container  
   * PHP-FPM container   
 
-<br/>
+<br/><br/>
 
 ### [tutorial.05](tutorial.05/README.md)  
+----
 Using unix socket for fastcgi_pass in [tutorial.04](tutorial.04/README.md). 
 
   working...
@@ -130,9 +138,10 @@ Using unix socket for fastcgi_pass in [tutorial.04](tutorial.04/README.md).
 > This tutorial uses a `tut01-php:1.0.0` image,  
 > Which is built from Dockerfile in [tutorial.01](tutorial.01/README.md)  
 
-<br/>
+<br/><br/>
 
 ### [tutorial.06](tutorial.06/README.md)  
+----
 Using unix socket for fastcgi_pass in [tutorial.02](tutorial.02/README.md). 
 
   working...
@@ -154,6 +163,7 @@ Using unix socket for fastcgi_pass in [tutorial.02](tutorial.02/README.md).
 <br/><br/><br/>
 
 ## Tips  
+----
 ### docker  
 Build an image from a Dockerfile(`.` is current path).  
 `-t` Option tags in the 'name:tag' format
@@ -244,6 +254,7 @@ $ minikube logs
 <br/><br/><br/>
 
 ## References  
+----
 ### Kubernetes  
 * [Containers](https://kubernetes.io/docs/concepts/containers/)  
   * [Images](https://kubernetes.io/docs/concepts/containers/images/)  
