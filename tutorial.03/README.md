@@ -1,34 +1,21 @@
-# tutorial.4
+# tutorial.03  
 
-Shows remove use of persistent volume in [tutorial.2](tutorial.2/README.md). 
+Shows deploy a new php container in [tutorial.02](tutorial.02/README.md).   
 
+> This tutorial uses a `tut01-php:1.0.0` image,  
+> Which is built from Dockerfile in [tutorial.01](../tutorial.01/README.md)   
+ 
 <br/><br/><br/>
 
 ## Run  
-Move to working path:  
-  ```shell
-  cd {Project Root}/tutorial.4/  
-  ```
+> This tutorial is the continuation of [tutorial.02](../tutorial.02/README.md).  
 
 <br/>
 
-### Create Nginx Configuration  
-In this step, you will use a *ConfigMap* to configure Nginx.  
-A *ConfigMap* holds your configuration in a key-value format that you can  
-reference in other Kubernetes object definitions.  
+### Deploy a new PHP *Deployment*  
+If an deploy an updated php *deployment*, run the following command:    
   ```shell
-  $ kubectl apply -f resources/configmap
-  ```
-
-<br/>
-
-### Create Nginx + PHP-FPM *Deployment*  
-*Deployments* provide a uniform way to create, update, and manage *pods*  
-by using *ReplicaSets*.  
-If an update does not work as expected, a *Deployment* will automatically  
-rollback its *pods* to a previous image.  
-  ```shell
-  $ kubectl apply -f resources/deployment/nginx-php.yaml
+  $ kubectl apply -f resources/deployment/php.new.yaml
   ```
 
 It will take some time for the *pods* status to become `podInitializing`.  
@@ -50,35 +37,15 @@ Once it’s completed you will have your *pod* `running`.
 
 <br/>
 
-### Expose your Application  
-Now everything is in place and you can expose your application to internet.  
-To do this you can run the following command to create a *Load Balancer*  
-which provides you an external IP.  
-```shell
-$ kubectl expose deployment tut04-nginx-php --type=NodePort --port=80
-```
-
-> Note: The `type=LoadBalancer` service is backed by external cloud providers,  
-> which is not covered in this example, please refer to [this page](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer) for the details.
- 
-> Note: If the external IP address is shown as <pending>,  
-> wait for a minute and enter the same command again. 
-
-<br/>
-
 ### Summary commands  
 Create all resources:   
   ```shell
-  $ kubectl apply -f resources/configmap
-  $ kubectl apply -f resources/deployment
-  $ kubectl expose deployment tut04-nginx-php --type=NodePort --port=80
+  $ kubectl apply -f resources/deployment/php.new.yaml
   ```
 
 Delete all resources:   
   ```shell
-  $ kubectl delete service tut04-nginx-php
   $ kubectl delete -f resources/deployment
-  $ kubectl delete -f resources/configmap
   ```
 
 <br/><br/><br/>

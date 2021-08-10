@@ -1,14 +1,15 @@
-# tutorial.0
+# tutorial.00
 
-## [Run a Stateless Application Using a Deployment](https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/)  
+Written with reference to [Run a Stateless Application Using a Deployment](https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/)  
 
-### [Objectives](https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/#objectives)  
+## [Objectives](https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/#objectives)  
 * Create an nginx deployment.  
 * Use kubectl to list information about the deployment.  
 * Update the deployment.  
 
 <br/>
 
+## Run  
 ### Creating and exploring an nginx deployment  
 Creating a Kubernetes Deployment object:  
 ```yaml
@@ -81,3 +82,4 @@ $ kubectl delete -f app/deployment.yaml
 <br/><br/><br/>
 
 ## Reference  
+* [Run a Stateless Application Using a Deployment](https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/)  

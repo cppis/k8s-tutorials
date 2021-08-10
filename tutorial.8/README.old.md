@@ -32,7 +32,7 @@ How does it work?
     $ kubectl create -f resources/kubernetes/services/local-service.yaml
     service "local-service" created
     ```
-3. Create a K8S deployment:
+3. Create a K8S *deployment*:
 
     ```bash
     $ kubectl create -f resources/kubernetes/deployments/local-deployment.yaml

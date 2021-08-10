@@ -20,75 +20,136 @@ that enables you to build and share containerized applications and microservices
 <br/><br/><br/>
 
 ## Tutorials  
-### [tutorial.0](tutorial.0/README.md)  
-* [Run a Stateless Application Using a Deployment](https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/)  
+### [tutorial.00](tutorial.00/README.md)  
+Written with reference to [Run a Stateless Application Using a Deployment](https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/)  
 
 <br/>
 
-### [tutorial.1](tutorial.1/README.md)  
-* [PHP-FPM, Nginx, Kubernetes, and Docker](https://matthewpalmer.net/kubernetes-app-developer/articles/php-fpm-nginx-kubernetes.html)  
+#### Objectives  
+* Create a k8s *deployment*  
+  * Nginx container  
+* Update the *deployment*  
+
+<br/>
+
+### [tutorial.01](tutorial.01/README.md)  
+Written with reference to [PHP-FPM, Nginx, Kubernetes, and Docker](https://matthewpalmer.net/kubernetes-app-developer/articles/php-fpm-nginx-kubernetes.html)  
 
 <figure>
 <div style="text-align:center">
   <a href="https://matthewpalmer.net/kubernetes-app-developer/articles/php-fpm-diagram.png">
-  <img src="https://matthewpalmer.net/kubernetes-app-developer/articles/php-fpm-diagram.png" style="width: 360px; max-width: 100%; height: auto" title="tutorial.2" />
+  <img src="https://matthewpalmer.net/kubernetes-app-developer/articles/php-fpm-diagram.png" style="width: 360px; max-width: 100%; height: auto" title="tutorial.02" />
   </a>
 </div>
 </figure>
 
 <br/>
 
-### [tutorial.2](tutorial.2/README.md)  
-* [Kubernetes Basic PHP 7.3 Application with Nginx on Google Cloud](https://www.cloudbooklet.com/kubernetes-basic-php-application-with-nginx-on-google-cloud/) without PersistentVolume  
+#### Objectives  
+* Create a k8s pod  
+  * Nginx container  
+  * PHP-FPM container   
+
+<br/>
+
+### [tutorial.02](tutorial.02/README.md)  
+Written with reference to [Kubernetes Basic PHP 7.3 Application with Nginx on Google Cloud](https://www.cloudbooklet.com/kubernetes-basic-php-application-with-nginx-on-google-cloud/).  
 
 <figure>
 <div style="text-align:center">
   <a href="https://drive.google.com/uc?export=view&id=1QpH2nVmUOwrx9nfv3S0QJKeilWSb9ClO">
-  <img src="https://drive.google.com/uc?export=view&id=1YjRNN7XGG3XjnKdBK5cv4JQG-9dMkLU5" style="width: 360px; max-width: 100%; height: auto" title="tutorial.2" />
+  <img src="https://drive.google.com/uc?export=view&id=1YjRNN7XGG3XjnKdBK5cv4JQG-9dMkLU5" style="width: 360px; max-width: 100%; height: auto" title="tutorial.02" />
   </a>
 </div>
 </figure>
 
 <br/>
 
-> This tutorial uses a `tut01-php:1.0.0` image,  
-> Which built using a Dockerfile in [tutorial.1](./tutorial.1/README.md)  
+#### Objectives  
+* Create a k8s *deployment*  
+  * Nginx container  
+  * PHP-FPM container  
+* Create a k8s *Persistent Volume*  
+  * Bind the volume to the *deployment*  
 
 <br/>
 
-### [tutorial.3](tutorial.3/README.md)  
-* Shows [tutorial.2](tutorial.2/README.md) and deploy a new php container.  
-
 > This tutorial uses a `tut01-php:1.0.0` image,  
-> Which is built from Dockerfile in [tutorial.1](./tutorial.1/README.md)   
+> Which built using a Dockerfile in [tutorial.01](./tutorial.01/README.md)  
 
 <br/>
 
-### [tutorial.4](tutorial.4/README.md)  
-* Shows remove use of persistent volume in [tutorial.2](tutorial.2/README.md). 
+### [tutorial.03](tutorial.03/README.md)  
+Shows deploy a new php container in [tutorial.02](tutorial.02/README.md).  
 
 > This tutorial uses a `tut01-php:1.0.0` image,  
-> Which is built from Dockerfile in [tutorial.1](./tutorial.1/README.md)   
+> Which is built from Dockerfile in [tutorial.01](./tutorial.01/README.md)   
+
+> This tutorial is the continuation of [tutorial.02](tutorial.02/README.md).  
 
 <br/>
 
-### [tutorial.5](tutorial.5/README.md)  
-* Using unix socket for fastcgi_pass in [tutorial.4](tutorial.4/README.md). 
-
-working...
-
-> This tutorial uses a `tut01-php:1.0.0` image,  
-> Which is built from Dockerfile in [tutorial.1](./tutorial.1/README.md)  
+#### Objectives  
+* Create a k8s *deployment*  
+  * Nginx container  
+  * PHP-FPM container  
+* Create a k8s *Persistent Volume*  
+  * Bind the volume to the *deployment*  
+* Deploy a new php container(*php.new.yaml*)  
 
 <br/>
 
-### [tutorial.6](tutorial.5/README.md)  
-* Using unix socket for fastcgi_pass in [tutorial.2](tutorial.4/README.md) with persistent volume. 
-
-working...
+### [tutorial.04](tutorial.04/README.md)  
+Shows remove use of persistent volume in [tutorial.02](tutorial.02/README.md). 
 
 > This tutorial uses a `tut01-php:1.0.0` image,  
-> Which is built from Dockerfile in [tutorial.1](./tutorial.1/README.md)  
+> Which is built from Dockerfile in [tutorial.01](./tutorial.01/README.md)   
+
+<br/>
+
+#### Objectives  
+* K8s deployment  
+  * Nginx container  
+  * PHP-FPM container   
+
+<br/>
+
+### [tutorial.05](tutorial.05/README.md)  
+Using unix socket for fastcgi_pass in [tutorial.04](tutorial.04/README.md). 
+
+  working...
+
+<br/>
+
+#### Objectives  
+* K8s deployment  
+  * Nginx container  
+  * PHP-FPM container   
+    * Using unix socket for *fastcgi_pass*  
+
+> This tutorial uses a `tut01-php:1.0.0` image,  
+> Which is built from Dockerfile in [tutorial.01](tutorial.01/README.md)  
+
+<br/>
+
+### [tutorial.06](tutorial.06/README.md)  
+Using unix socket for fastcgi_pass in [tutorial.02](tutorial.02/README.md). 
+
+  working...
+
+<br/>
+
+  #### Objectives  
+* Create a k8s *deployment*  
+  * Nginx container  
+  * PHP-FPM container  
+    * Using unix socket for *fastcgi_pass*  
+* Create a k8s Persistent Volume  
+  * Bind the volume to the deployment  
+
+
+> This tutorial uses a `tut01-php:1.0.0` image,  
+> Which is built from Dockerfile in [tutorial.01](./tutorial.01/README.md)  
 
 <br/><br/><br/>
 

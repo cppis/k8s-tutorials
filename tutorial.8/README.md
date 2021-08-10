@@ -1,4 +1,4 @@
-# tutorial.3
+# tutorial.08
 
 This tutorial shows simple template for starting a PHP 7 application served by NGINX,  
 using Kubernetes (K8S) deployment object. This also works with Minikube, to aid in  
@@ -29,7 +29,7 @@ learning how to use K8S on a local machine.
     $ kubectl create -f resources/k8s/services/local-service.yaml
     service "local-service" created
     ```
-3. Create a K8S deployment:
+3. Create a K8S *deployment*:
 
     ```bash
     $ kubectl create -f resources/k8s/deployments/local-deployment.yaml

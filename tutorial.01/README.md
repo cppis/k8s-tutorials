@@ -1,4 +1,4 @@
-# tutorial.1
+# tutorial.01
 
 This tutorial shows how to create a `nginx+php-fpm` app in a Kubernetes. 
 
@@ -7,7 +7,7 @@ This tutorial shows how to create a `nginx+php-fpm` app in a Kubernetes.
 ## Run  
 * Move to working path:  
   ```shell
-  cd {Project Root}/tutorial.1/  
+  cd {Project Root}/tutorial.01/  
   ```
 
 <br/>
