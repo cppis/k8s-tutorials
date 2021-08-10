@@ -1,7 +1,6 @@
 # k8s Tutorials  
 
 ## Prerequisites  
-----
 ### [Docker Desktop](https://docs.docker.com/desktop/)  
 *Docker Desktop* is an easy-to-install application for your Mac or Windows environment  
 that enables you to build and share containerized applications and microservices.  
@@ -21,7 +20,6 @@ that enables you to build and share containerized applications and microservices
 <br/><br/><br/>
 
 ## Tutorials  
-----
 ### [tutorial.00](tutorial.00/README.md)  
 ----
 Written with reference to [Run a Stateless Application Using a Deployment](https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/)  
@@ -163,7 +161,6 @@ Using unix socket for fastcgi_pass in [tutorial.02](tutorial.02/README.md).
 <br/><br/><br/>
 
 ## Tips  
-----
 ### docker  
 Build an image from a Dockerfile(`.` is current path).  
 `-t` Option tags in the 'name:tag' format
@@ -254,7 +251,6 @@ $ minikube logs
 <br/><br/><br/>
 
 ## References  
-----
 ### Kubernetes  
 * [Containers](https://kubernetes.io/docs/concepts/containers/)  
   * [Images](https://kubernetes.io/docs/concepts/containers/images/)  
