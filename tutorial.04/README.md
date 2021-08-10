@@ -12,6 +12,7 @@ Shows remove use of persistent volume in [tutorial.02](../tutorial.02/README.md)
 <br/><br/><br/>
 
 ## Run  
+
 Move to working path:  
   ```shell
   cd {Project Root}/tutorial.04/  

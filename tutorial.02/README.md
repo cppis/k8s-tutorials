@@ -29,6 +29,14 @@ Written with reference to [Kubernetes Basic PHP 7.3 Application with Nginx on Go
 <br/><br/><br/>
 
 ## Run  
+
+Move to working path:  
+  ```shell
+  cd {Project Root}/tutorial.02/  
+  ```
+
+<br/>
+
 ### Create PHP-FPM *Service*  
 A *service* allows access to a set of *pods* from within the cluster.  
 *Services* within a cluster can communicate directly through their names,  

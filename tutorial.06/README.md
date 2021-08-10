@@ -20,6 +20,13 @@ Using unix socket for fastcgi_pass in [tutorial.02](../tutorial.02/README.md).
 <br/><br/><br/>
 
 ## Run  
+Move to working path:  
+  ```shell
+  cd {Project Root}/tutorial.06/  
+  ```
+
+<br/>
+
 ### Create PHP-FPM *Service*  
 A *service* allows access to a set of *pods* from within the cluster.  
 *Services* within a cluster can communicate directly through their names,  

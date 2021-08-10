@@ -8,12 +8,7 @@ Shows deploy a new php container in [tutorial.02](tutorial.02/README.md).
 <br/><br/><br/>
 
 ## Objectives  
-* Create a k8s *deployment*  
-  * Nginx container  
-  * PHP-FPM container  
-* Create a k8s *Persistent Volume*  
-  * Bind the volume to the *deployment*  
-* Deploy a new php container(*php.new.yaml*)  
+* Deploy a new php container(*php.yaml*)  
 
 <br/><br/><br/>
 
@@ -22,10 +17,17 @@ Shows deploy a new php container in [tutorial.02](tutorial.02/README.md).
 
 <br/>
 
+Move to working path:  
+  ```shell
+  cd {Project Root}/tutorial.03/  
+  ```
+
+<br/>
+
 ### Deploy a new PHP *Deployment*  
 If an deploy an updated php *deployment*, run the following command:    
   ```shell
-  $ kubectl apply -f resources/deployment/php.new.yaml
+  $ kubectl apply -f resources/deployment/php.yaml
   ```
 
 It will take some time for the *pods* status to become `podInitializing`.  
