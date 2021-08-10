@@ -245,15 +245,21 @@ $ minikube logs
 
 ## References  
 ### Kubernetes  
-* [Images](https://kubernetes.io/docs/concepts/containers/images/)  
-* [Connecting Applications with Services](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/)  
-* [Exposing an External IP Address to Access an Application in a Cluster](https://kubernetes.io/docs/tutorials/stateless-application/expose-external-ip-address/)  
-* [Configuration Best Practices](https://kubernetes.io/docs/concepts/configuration/overview/)  
-
-#### Volume  
-* [Kubernetes Persistent Volumes with Deployment and StatefulSet](https://akomljen.com/kubernetes-persistent-volumes-with-deployment-and-statefulset/)  
-* [Kubernetes: Persistent Volume For Beginners:](https://medium.com/@muneeburrehman2610/kubernetes-persistent-volume-for-beginners-a13cbe5bdeea)  
-* [Providing Persistent Storage to Windows Containers](https://cloud.redhat.com/blog/providing-persistent-storage-to-windows-containers)  
+* [Containers](https://kubernetes.io/docs/concepts/containers/)  
+  * [Images](https://kubernetes.io/docs/concepts/containers/images/)  
+* [Configuration](https://kubernetes.io/docs/concepts/configuration/)  
+  * [Configuration Best Practices](https://kubernetes.io/docs/concepts/configuration/overview/)  
+  * [Managing Resources for Containers](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+* [Services, Load Balancing, and Networking](https://kubernetes.io/docs/concepts/services-networking/)  
+  * [Service](https://kubernetes.io/docs/concepts/services-networking/service/)
+  * [Connecting Applications with Services](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/)  
+* [Storage](https://kubernetes.io/docs/concepts/storage/)  
+  * [Volumes](https://kubernetes.io/docs/concepts/storage/volumes/)  
+    * [Kubernetes Persistent Volumes with Deployment and StatefulSet](https://akomljen.com/kubernetes-persistent-volumes-with-deployment-and-statefulset/)  
+    * [Kubernetes: Persistent Volume For Beginners:](https://medium.com/@muneeburrehman2610/kubernetes-persistent-volume-for-beginners-a13cbe5bdeea)  
+    * [Providing Persistent Storage to Windows Containers](https://cloud.redhat.com/blog/providing-persistent-storage-to-windows-containers)  
+* [Tutorials](https://kubernetes.io/docs/tutorials/)  
+  * [Exposing an External IP Address to Access an Application in a Cluster](https://kubernetes.io/docs/tutorials/stateless-application/expose-external-ip-address/)  
 
 <br/>
 
