@@ -255,11 +255,17 @@ $ minikube logs
   * [Connecting Applications with Services](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/)  
 * [Storage](https://kubernetes.io/docs/concepts/storage/)  
   * [Volumes](https://kubernetes.io/docs/concepts/storage/volumes/)  
+    * [Kubernetes 1.14: Local Persistent Volumes GA](https://kubernetes.io/blog/2019/04/04/kubernetes-1.14-local-persistent-volumes-ga/)  
     * [Kubernetes Persistent Volumes with Deployment and StatefulSet](https://akomljen.com/kubernetes-persistent-volumes-with-deployment-and-statefulset/)  
     * [Kubernetes: Persistent Volume For Beginners:](https://medium.com/@muneeburrehman2610/kubernetes-persistent-volume-for-beginners-a13cbe5bdeea)  
     * [Providing Persistent Storage to Windows Containers](https://cloud.redhat.com/blog/providing-persistent-storage-to-windows-containers)  
 * [Tutorials](https://kubernetes.io/docs/tutorials/)  
   * [Exposing an External IP Address to Access an Application in a Cluster](https://kubernetes.io/docs/tutorials/stateless-application/expose-external-ip-address/)  
+
+* [Reference](https://kubernetes.io/docs/reference/)  
+  * [Using a feature](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/)  
+    A feature can be in *Alpha*, *Beta* or *GA* stage.  
+    A *General Availability(GA)* feature is also referred to as a stable feature.  
 
 <br/>
 
