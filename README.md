@@ -1,6 +1,7 @@
 # k8s Tutorials  
 
 ## Prerequisites  
+----
 ### [Docker Desktop](https://docs.docker.com/desktop/)  
 *Docker Desktop* is an easy-to-install application for your Mac or Windows environment  
 that enables you to build and share containerized applications and microservices.  
@@ -20,6 +21,7 @@ that enables you to build and share containerized applications and microservices
 <br/><br/><br/>
 
 ## Tutorials  
+----
 ### [tutorial.00](tutorial.00/README.md)  
 ----
 Written with reference to [Run a Stateless Application Using a Deployment](https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/)  
@@ -58,6 +60,11 @@ Written with reference to [PHP-FPM, Nginx, Kubernetes, and Docker](https://matth
 ----
 Written with reference to [Kubernetes Basic PHP 7.3 Application with Nginx on Google Cloud](https://www.cloudbooklet.com/kubernetes-basic-php-application-with-nginx-on-google-cloud/).  
 
+<br/>
+
+> This tutorial uses a `tut01-php:1.0.0` image,  
+> Which built using a Dockerfile in [tutorial.01](./tutorial.01/README.md)  
+
 <figure>
 <div style="text-align:center">
   <a href="https://drive.google.com/uc?export=view&id=1QpH2nVmUOwrx9nfv3S0QJKeilWSb9ClO">
@@ -74,11 +81,6 @@ Written with reference to [Kubernetes Basic PHP 7.3 Application with Nginx on Go
   * PHP-FPM container  
 * Create a k8s *Persistent Volume*  
   * Bind the volume to the *deployment*  
-
-<br/>
-
-> This tutorial uses a `tut01-php:1.0.0` image,  
-> Which built using a Dockerfile in [tutorial.01](./tutorial.01/README.md)  
 
 <br/><br/>
 
@@ -123,9 +125,12 @@ Shows remove use of persistent volume in [tutorial.02](tutorial.02/README.md).
 ----
 Using unix socket for fastcgi_pass in [tutorial.04](tutorial.04/README.md). 
 
-  working...
+> This tutorial uses a `tut01-php:1.0.0` image,  
+> Which is built from Dockerfile in [tutorial.01](tutorial.01/README.md)  
 
 <br/>
+
+  working...
 
 #### Objectives  
 * K8s deployment  
@@ -133,18 +138,18 @@ Using unix socket for fastcgi_pass in [tutorial.04](tutorial.04/README.md).
   * PHP-FPM container   
     * Using unix socket for *fastcgi_pass*  
 
-> This tutorial uses a `tut01-php:1.0.0` image,  
-> Which is built from Dockerfile in [tutorial.01](tutorial.01/README.md)  
-
 <br/><br/>
 
 ### [tutorial.06](tutorial.06/README.md)  
 ----
 Using unix socket for fastcgi_pass in [tutorial.02](tutorial.02/README.md). 
 
-  working...
+> This tutorial uses a `tut01-php:1.0.0` image,  
+> Which is built from Dockerfile in [tutorial.01](./tutorial.01/README.md)  
 
 <br/>
+
+  working...
 
 #### Objectives  
 * Create a k8s *deployment*  
@@ -154,13 +159,10 @@ Using unix socket for fastcgi_pass in [tutorial.02](tutorial.02/README.md).
 * Create a k8s Persistent Volume  
   * Bind the volume to the deployment  
 
-
-> This tutorial uses a `tut01-php:1.0.0` image,  
-> Which is built from Dockerfile in [tutorial.01](./tutorial.01/README.md)  
-
 <br/><br/><br/>
 
 ## Tips  
+----
 ### docker  
 Build an image from a Dockerfile(`.` is current path).  
 `-t` Option tags in the 'name:tag' format
@@ -251,6 +253,7 @@ $ minikube logs
 <br/><br/><br/>
 
 ## References  
+----
 ### Kubernetes  
 * [Containers](https://kubernetes.io/docs/concepts/containers/)  
   * [Images](https://kubernetes.io/docs/concepts/containers/images/)  
