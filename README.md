@@ -164,6 +164,45 @@ $ docker build . -t my-php-app:1.0.0
 
 <br/>
 
+### kubernetes  
+Apply a kubernetes config:  
+```shell
+$ kubectl apply -f {k8s config path or yaml}
+```
+
+Delete a kubernetes config:  
+```shell
+$ kubectl delete -f {k8s config path or yaml}
+```
+
+Expose kubernetes service:  
+```shell
+$ kubectl expose {Type} {Name} --type={Expose Type} --port={Port}
+```
+
+  * Example:  
+  ```shell
+  $ kubectl expose pod k8s-nginx-php --type=NodePort --port=80
+  ```
+
+[Get a Shell to a Running Container](https://kubernetes.io/docs/tasks/debug-application-cluster/get-shell-running-container/)  
+Verify that the container is running:  
+```shell
+$ kubectl get pod {Pod Name}
+```
+
+Get a shell to the running container:  
+```shell
+$ kubectl exec --stdin --tty {Pod Name} -- /bin/bash  
+```
+
+[Opening a shell when a Pod has more than one container](https://kubernetes.io/docs/tasks/debug-application-cluster/get-shell-running-container/#opening-a-shell-when-a-pod-has-more-than-one-container):  
+```shell
+$ kubectl exec -i -t {Pod Name} --container {Container Name} -- /bin/bash
+```
+
+<br/>
+
 ### minikube  
 Start a new minikube cluster:  
 ```shell
@@ -201,29 +240,6 @@ View logs of minikube:
 ```shell
 $ minikube logs
 ```
-
-<br/>
-
-### kubernetes  
-Apply a kubernetes config:  
-```shell
-$ kubectl apply -f {k8s config path or yaml}
-```
-
-Delete a kubernetes config:  
-```shell
-$ kubectl delete -f {k8s config path or yaml}
-```
-
-Expose kubernetes service:  
-```shell
-$ kubectl expose {Type} {Name} --type={Expose Type} --port={Port}
-```
-
-  * Example:  
-  ```shell
-  $ kubectl expose pod k8s-nginx-php --type=NodePort --port=80
-  ```
 
 <br/><br/><br/>
 
