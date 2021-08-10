@@ -39,6 +39,8 @@ Written with reference to [Run a Stateless Application Using a Deployment](https
 ----
 Written with reference to [PHP-FPM, Nginx, Kubernetes, and Docker](https://matthewpalmer.net/kubernetes-app-developer/articles/php-fpm-nginx-kubernetes.html)  
 
+<br/>
+
 <figure>
 <div style="text-align:center">
   <a href="https://drive.google.com/uc?export=view&id=1eweNr6OMtE86-tRa0MfGTdy4Kfpyo_3u">
@@ -88,6 +90,8 @@ Written with reference to [Kubernetes Basic PHP 7.3 Application with Nginx on Go
 ----
 Shows deploy a new php container in [tutorial.02](tutorial.02/README.md).  
 
+<br/>
+
 > This tutorial uses a `tut01-php:1.0.0` image,  
 > Which is built from Dockerfile in [tutorial.01](./tutorial.01/README.md)   
 
@@ -109,6 +113,8 @@ Shows deploy a new php container in [tutorial.02](tutorial.02/README.md).
 ----
 Shows remove use of persistent volume in [tutorial.02](tutorial.02/README.md). 
 
+<br/>
+
 > This tutorial uses a `tut01-php:1.0.0` image,  
 > Which is built from Dockerfile in [tutorial.01](./tutorial.01/README.md)   
 
@@ -124,6 +130,8 @@ Shows remove use of persistent volume in [tutorial.02](tutorial.02/README.md).
 ### [tutorial.05](tutorial.05/README.md)  
 ----
 Using unix socket for fastcgi_pass in [tutorial.04](tutorial.04/README.md). 
+
+<br/>
 
 > This tutorial uses a `tut01-php:1.0.0` image,  
 > Which is built from Dockerfile in [tutorial.01](tutorial.01/README.md)  
@@ -143,6 +151,8 @@ Using unix socket for fastcgi_pass in [tutorial.04](tutorial.04/README.md).
 ### [tutorial.06](tutorial.06/README.md)  
 ----
 Using unix socket for fastcgi_pass in [tutorial.02](tutorial.02/README.md). 
+
+<br/>
 
 > This tutorial uses a `tut01-php:1.0.0` image,  
 > Which is built from Dockerfile in [tutorial.01](./tutorial.01/README.md)  
