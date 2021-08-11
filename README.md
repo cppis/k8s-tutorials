@@ -24,8 +24,7 @@ that enables you to build and share containerized applications and microservices
 Written with reference to [Run a Stateless Application Using a Deployment](https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/)  
 
 #### Objectives  
-* Create a k8s *deployment*  
-  * Nginx container  
+* Create a k8s Nginx *deployment*  
 * Update the *deployment*  
 
 <br/><br/>
@@ -42,9 +41,9 @@ Written with reference to [PHP-FPM, Nginx, Kubernetes, and Docker](https://matth
 </figure>
 
 #### Objectives  
-* Create a k8s pod  
-  * Nginx container  
-  * PHP-FPM container   
+* Create a k8s *pod*  
+  * Add a Nginx container  
+  * Add a PHP-FPM container   
 
 <br/><br/>
 
@@ -63,9 +62,8 @@ Written with reference to [Kubernetes Basic PHP 7.3 Application with Nginx on Go
 </figure>
 
 #### Objectives  
-* Create a k8s *deployment*  
-  * Nginx container  
-  * PHP-FPM container  
+* Create a k8s Nginx *deployment*  
+* Create a k8s PHP-FPM *deployment*  
 * Create a k8s *Persistent Volume*  
   * Bind the volume to the *deployment*  
 
@@ -91,9 +89,8 @@ Shows remove use of persistent volume in [tutorial.02](tutorial.02/README.md).
 > Which is built from Dockerfile in [tutorial.01](./tutorial.01/README.md)   
 
 #### Objectives  
-* K8s deployment  
-  * Nginx container  
-  * PHP-FPM container   
+* Create a k8s Nginx *deployment*  
+* Create a k8s PHP-FPM *deployment*  
 
 <br/><br/>
 
