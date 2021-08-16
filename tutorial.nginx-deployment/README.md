@@ -1,4 +1,4 @@
-# tutorial.00
+# tutorial: nginx deployment
 
 Written with reference to [Run a Stateless Application Using a Deployment](https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/)  
 

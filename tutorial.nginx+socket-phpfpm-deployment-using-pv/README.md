@@ -1,33 +1,43 @@
-# tutorial.03  
+# tutorial: nginx + socket php-fpm deployment using pv
 
-Shows deploy a new php container in [tutorial.02](tutorial.02/README.md).   
-
-> This tutorial uses a `tut01-php:1.0.0` image,  
-> Which is built from Dockerfile in [tutorial.01](../tutorial.01/README.md)   
+Using unix socket for fastcgi_pass in [tutorial: nginx + php-fpm deployment using pv](../tutorial.nginx+phpfpm-deployment-using-pv/README.md). 
 
 <br/><br/><br/>
 
 ## Objectives  
-* Deploy a new php container(*php.yaml*)  
+* K8s deployment  
+  * Nginx container  
+  * PHP-FPM container   
+    * Using unix socket for *fastcgi_pass*  
 
 <br/><br/><br/>
 
 ## Run  
-> This tutorial is the continuation of [tutorial.02](../tutorial.02/README.md).  
-
-<br/>
 
 Move to working path:  
   ```shell
-  cd {Project Root}/tutorial.03/  
+  cd {Project Root}/tutorial.nginx+socket-phpfpm-deployment-using-pv/  
   ```
 
 <br/>
 
-### Deploy a new PHP *Deployment*  
-If an deploy an updated php *deployment*, run the following command:    
+### Create Nginx Configuration  
+In this step, you will use a *ConfigMap* to configure Nginx.  
+A *ConfigMap* holds your configuration in a key-value format that you can  
+reference in other Kubernetes object definitions.  
   ```shell
-  $ kubectl apply -f resources/deployment/php.yaml
+  $ kubectl apply -f resources/configmap
+  ```
+
+<br/>
+
+### Create Nginx + PHP-FPM *Deployment*  
+*Deployments* provide a uniform way to create, update, and manage *pods*  
+by using *ReplicaSets*.  
+If an update does not work as expected, a *Deployment* will automatically  
+rollback its *pods* to a previous image.  
+  ```shell
+  $ kubectl apply -f resources/deployment/nginx-php.yaml
   ```
 
 It will take some time for the *pods* status to become `podInitializing`.  
@@ -49,15 +59,45 @@ Once it’s completed you will have your *pod* `running`.
 
 <br/>
 
+### Expose your Application  
+Now everything is in place and you can expose your application to internet.  
+To do this you can run the following command to create a *Load Balancer*  
+which provides you an external IP.  
+```shell
+$ kubectl expose deployment tut05-nginx-php --type=NodePort --port=80
+```
+
+> Note: The `type=LoadBalancer` service is backed by external cloud providers,  
+> which is not covered in this example, please refer to [this page](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer) for the details.
+ 
+> Note: If the external IP address is shown as <pending>,  
+> wait for a minute and enter the same command again. 
+
+<br/>
+
+### Expose your Application  
+```shell
+$ kubectl exec -i -t {Pod Name} --container php -- /bin/bash
+```
+
+> `tut01-php:1.0.0` 의 
+> `www.conf` 파일 경로는 `/usr/local/etc/php-fpm.d` 입니다.  
+
+<br/>
+
 ### Summary commands  
 Create all resources:   
   ```shell
-  $ kubectl apply -f resources/deployment/php.new.yaml
+  $ kubectl apply -f resources/configmap
+  $ kubectl apply -f resources/deployment
+  $ kubectl expose deployment tut05-nginx-php --type=NodePort --port=80
   ```
 
 Delete all resources:   
   ```shell
+  $ kubectl delete service tut05-nginx-php
   $ kubectl delete -f resources/deployment
+  $ kubectl delete -f resources/configmap
   ```
 
 <br/><br/><br/>

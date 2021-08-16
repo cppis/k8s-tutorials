@@ -1,38 +1,28 @@
-# tutorial.02  
+# tutorial: nginx + socket php-fpm deployment  
 
-Written with reference to [Kubernetes Basic PHP 7.3 Application with Nginx on Google Cloud](https://www.cloudbooklet.com/kubernetes-basic-php-application-with-nginx-on-google-cloud/).  
-
-<br/>
-
-<figure>
-<div style="text-align:center">
-  <a href="https://drive.google.com/uc?export=view&id=1QpH2nVmUOwrx9nfv3S0QJKeilWSb9ClO">
-  <img src="https://drive.google.com/uc?export=view&id=1QpH2nVmUOwrx9nfv3S0QJKeilWSb9ClO" style="width: 480px; max-width: 100%; height: auto" title="tutorial.02" />
-  </a>
-</div>
-</figure>
+Using unix socket for fastcgi_pass in [tutorial: nginx + php-fpm deployment](../tutorial.nginx+phpfpm-deployment/README.md).  
 
 <br/>
+
+> This tutorial uses a `tut01-php:1.0.0` image,  
+> Which is built from Dockerfile in [tutorial: nginx + php-fpm pod](../tutorial.nginx+phpfpm-pod/README.md)   
+ 
+<br/><br/><br/>
 
 ## Objectives  
 * Create a k8s *deployment*  
   * Nginx container  
   * PHP-FPM container  
-* Create a k8s *Persistent Volume*  
-  * Bind the volume to the *deployment*  
+    * Using unix socket for *fastcgi_pass*  
+* Create a k8s Persistent Volume  
+  * Bind the volume to the deployment  
 
-<br/>
-
-> This tutorial uses a `tut01-php:1.0.0` image,  
-> Which is built from Dockerfile in [tutorial.01](../tutorial.01/README.md)   
- 
 <br/><br/><br/>
 
 ## Run  
-
 Move to working path:  
   ```shell
-  cd {Project Root}/tutorial.02/  
+  cd {Project Root}/tutorial.nginx+socket-phpfpm-deployment/  
   ```
 
 <br/>
@@ -118,7 +108,7 @@ Now everything is in place and you can expose your application to internet.
 To do this you can run the following command to create a *Load Balancer*  
 which provides you an external IP.  
 ```shell
-$ kubectl expose deployment tut02-nginx --type=NodePort --port=80
+$ kubectl expose deployment nginx --type=NodePort --port=80
 ```
 
 > Note: The `type=LoadBalancer` service is backed by external cloud providers,  
@@ -132,22 +122,20 @@ $ kubectl expose deployment tut02-nginx --type=NodePort --port=80
 ### Summary commands  
 Create all resources:   
   ```shell
-  $ kubectl apply -f resources/service/php.yaml
   $ kubectl apply -f resources/volume/app.yaml
+  $ kubectl apply -f resources/volume/sock.yaml
   $ kubectl apply -f resources/deployment/php.yaml
   $ kubectl apply -f resources/configmap/nginx.yaml
   $ kubectl apply -f resources/deployment/nginx.yaml
-  $ kubectl expose deployment tut02-nginx --type=NodePort --port=80
+  $ kubectl expose deployment nginx --type=NodePort --port=80
   ```
 
 Delete all resources:   
   ```shell
-  $ kubectl delete service tut02-nginx
-  $ kubectl delete -f resources/deployment/nginx.yaml
-  $ kubectl delete -f resources/configmap/nginx.yaml
-  $ kubectl delete -f resources/deployment/php.yaml
-  $ kubectl delete -f resources/volume/app.yaml
-  $ kubectl delete -f resources/service/php.yaml
+  $ kubectl delete service nginx
+  $ kubectl delete -f resources/deployment
+  $ kubectl delete -f resources/configmap
+  $ kubectl delete -f resources/volume
   ```
 
 <br/>

@@ -1,6 +1,6 @@
-# tutorial.05
+# tutorial: nginx+php-fpm deployment using pv
 
-Using unix socket for fastcgi_pass in [tutorial.04](../tutorial.04/README.md). 
+Shows remove use of persistent volume in [tutorial: nginx+php-fpm deployment](../tutorial.nginx+phpfpm-deployment/README.md). 
 
 <br/><br/><br/>
 
@@ -8,7 +8,6 @@ Using unix socket for fastcgi_pass in [tutorial.04](../tutorial.04/README.md).
 * K8s deployment  
   * Nginx container  
   * PHP-FPM container   
-    * Using unix socket for *fastcgi_pass*  
 
 <br/><br/><br/>
 
@@ -16,7 +15,7 @@ Using unix socket for fastcgi_pass in [tutorial.04](../tutorial.04/README.md).
 
 Move to working path:  
   ```shell
-  cd {Project Root}/tutorial.05/  
+  cd {Project Root}/tutorial.nginx+phpfpm-deployment-using-pv/  
   ```
 
 <br/>
@@ -64,7 +63,7 @@ Now everything is in place and you can expose your application to internet.
 To do this you can run the following command to create a *Load Balancer*  
 which provides you an external IP.  
 ```shell
-$ kubectl expose deployment tut05-nginx-php --type=NodePort --port=80
+$ kubectl expose deployment tut04-nginx-php --type=NodePort --port=80
 ```
 
 > Note: The `type=LoadBalancer` service is backed by external cloud providers,  
@@ -75,27 +74,17 @@ $ kubectl expose deployment tut05-nginx-php --type=NodePort --port=80
 
 <br/>
 
-### Expose your Application  
-```shell
-$ kubectl exec -i -t {Pod Name} --container php -- /bin/bash
-```
-
-> `tut01-php:1.0.0` 의 
-> `www.conf` 파일 경로는 `/usr/local/etc/php-fpm.d` 입니다.  
-
-<br/>
-
 ### Summary commands  
 Create all resources:   
   ```shell
   $ kubectl apply -f resources/configmap
   $ kubectl apply -f resources/deployment
-  $ kubectl expose deployment tut05-nginx-php --type=NodePort --port=80
+  $ kubectl expose deployment tut04-nginx-php --type=NodePort --port=80
   ```
 
 Delete all resources:   
   ```shell
-  $ kubectl delete service tut05-nginx-php
+  $ kubectl delete service tut04-nginx-php
   $ kubectl delete -f resources/deployment
   $ kubectl delete -f resources/configmap
   ```

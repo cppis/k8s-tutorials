@@ -1,6 +1,6 @@
 # tutorial.01
 
-This tutorial shows how to create a `nginx+php-fpm` app in a Kubernetes. 
+This tutorial shows how to create a `nginx + php-fpm` app in a Kubernetes. 
 
 <br/>
 
