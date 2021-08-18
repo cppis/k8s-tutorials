@@ -10,6 +10,11 @@ Written with reference to [Run a Stateless Application Using a Deployment](https
 <br/>
 
 ## Run  
+Move to working path:  
+  ```shell
+  cd {Project Root}/tutorial.nginx-deployment/  
+  ```
+
 ### Creating and exploring an nginx deployment  
 Creating a Kubernetes Deployment object:  
 ```yaml
