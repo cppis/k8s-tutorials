@@ -129,6 +129,7 @@ Using unix socket for fastcgi_pass in [tutorial: nginx + php-fpm deployment](tut
 <br/><br/>
 
 ### [tutorial: k8s logging](tutorial.k8s-logging/README.md)  
+Written with reference to [*Fluentd* on Kubernetes: Log collection explained](https://www.youtube.com/watch?v=6kmHvXdAzIM&t=316s) by *That DevOps Guy*.  
 
 <br/><br/><br/>
 
