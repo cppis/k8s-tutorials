@@ -24,7 +24,7 @@ spec:
           effect: NoSchedule
       containers:
         - name: fluentd
-          imagePullPolicy: "Never"
+          imagePullPolicy: "IfNotPresent"
           image: fluentd-demo:v0.0.1
           env:
             - name: FLUENT_ELASTICSEARCH_HOST

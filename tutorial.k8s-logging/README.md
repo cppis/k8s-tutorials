@@ -18,13 +18,13 @@ Cluster-level logging architectures require a separate backend to store, analyze
 
 ## [Introduction to *Fluentd* on Kubernetes](https://github.com/marcel-dempers/docker-development-youtube-series/blob/master/monitoring/logging/fluentd/kubernetes/README.md)  
 
-### [*fluentd*](https://github.com/fluent/fluentd-kubernetes-daemonset)  
+### [*fluentd* manifests](https://github.com/fluent/fluentd-kubernetes-daemonset)  
 Before we start check out the official *fluentd* repo [fluent/fluentd-kubernetes-daemonset](https://github.com/fluent/fluentd-kubernetes-daemonset) which has a lot of implementations run *fluentd* as a *daemonset*. Send logs to *azureblob*, *cloudwatch*, *elasticsearch*, *gcs*, *forward to other fluentd instances* and so on.   
 Also includes different versions of [*fluentd* docker images](https://github.com/fluent/fluentd-kubernetes-daemonset/tree/master/docker-image).   
 
 <br/>
 
-#### Build *fluentd*  
+### Build *fluentd*  
 
 Move to working path:  
   ```shell
@@ -56,7 +56,7 @@ If you don't want to build your own, you can also refer to docker hub and use th
 
 <br/><br/>
 
-#### *Fluentd* Configmap  
+### *Fluentd* Configmap  
 We have 5 files in our `fluentd-configmap.yaml`:  
 * fluent.conf: Our main config which includes all other configurations
 * pods-kind-fluent.conf: `tail` config that sources all pod logs on the `kind` cluster.
@@ -77,37 +77,9 @@ data:
   fluent.conf: |-
     ################################################################
     # This source gets all logs from local docker host
-    #@include pods-kind-fluent.conf
     @include pods-fluent.conf
     @include file-fluent.conf
     #@include elastic-fluent.conf
-  pods-kind-fluent.conf: |-
-    <source>
-      @type tail
-      read_from_head true
-      tag kubernetes.*
-      path /var/log/containers/*.log
-      pos_file /var/log/fluentd-containers.log.pos
-      exclude_path ["/var/log/containers/fluent*"]
-      <parse>
-        @type regexp
-        #https://regex101.com/r/ZkOBTI/1
-        expression ^(?<time>\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.[^Z]*Z)\s(?<stream>[^\s]+)\s(?<character>[^\s])\s(?<message>.*)$
-        #time_format %Y-%m-%dT%H:%M:%S.%NZ
-      </parse>
-    </source>
-
-    <filter kubernetes.**>
-      @type kubernetes_metadata
-      @id filter_kube_metadata
-      kubernetes_url "#{ENV['FLUENT_FILTER_KUBERNETES_URL'] || 'https://' + ENV.fetch('KUBERNETES_SERVICE_HOST') + ':' + ENV.fetch('KUBERNETES_SERVICE_PORT') + '/api'}"
-      verify_ssl "#{ENV['KUBERNETES_VERIFY_SSL'] || true}"
-      ca_file "#{ENV['KUBERNETES_CA_FILE']}"
-      skip_labels "#{ENV['FLUENT_KUBERNETES_METADATA_SKIP_LABELS'] || 'false'}"
-      skip_container_metadata "#{ENV['FLUENT_KUBERNETES_METADATA_SKIP_CONTAINER_METADATA'] || 'false'}"
-      skip_master_url "#{ENV['FLUENT_KUBERNETES_METADATA_SKIP_MASTER_URL'] || 'false'}"
-      skip_namespace_metadata "#{ENV['FLUENT_KUBERNETES_METADATA_SKIP_NAMESPACE_METADATA'] || 'false'}"
-    </filter>
   pods-fluent.conf: |-
     <source>
       @type tail
@@ -166,7 +138,7 @@ Let's deploy our `configmap`:
 
 <br/><br/>
 
-#### The daemonset  
+### The daemonset  
 Let's go ahead and see what the kubernetes daemon sets for *fluentd* looks like.  
 The daemonset will mount all these config files as well as location where the logs are stored on the kubernetes node.  
 
@@ -198,7 +170,7 @@ Volumes `varlog` and `varlibdockercontainers` are both host path, so we're mount
 
 <br/><br/>
 
-#### Permissions  
+### Permissions  
 Before we deploy our daemonset in order for *fluentd* to read the metadata of each pod and add that metadata to each log entry, we have to deploy a *fluentd-rbac* file and we need to give *fluentd* access to be able to call the kubernetes API.  
 So to do that we have a [fluentd-rbac.yaml](resoureces/../resources/fluentd-rbac.yaml) and here we just give it a cluster role and role binding and we allow it to basically get, list and watch *pods* and *namespaces* in the cluster.  
 And we also create a small service account that we bind these roles to.  
@@ -229,7 +201,7 @@ $ kubectl -n fluentd get pods
 
 <br/><br/>
 
-#### Example app  
+### Example app  
 Now, we have the *fluentd* running.  
 Let's deploy a small example application the writes logs that we can collect.  
 Example is [counter.yaml](reousrces/../resources/counter.yaml), it is just a pod called *counter* which runs a small *bushbox* container image which runs in a loop and write a date stamp out to `stdout`.  
@@ -253,7 +225,7 @@ Next, let's see how *fluentd* collects those logs.
 
 <br/><br/>
 
-#### Log collection  
+### Log collection  
 Now we have *fluentd* up and running, it's very important to understand where the logs stored on the kubernetes node that's the same place the we've just mounted into our *fluentd* pod.   
 So, let's go inside that *fluentd* pod and look at the log files.  
 
@@ -326,7 +298,7 @@ And we can also see our kubernetes metadata plugin has added extra kubernetes me
 
 <br/><br/>
 
-#### Elastic search  
+### Elastic stack  
 To deploy a demo, first create a new namespace:  
 ```shell
 $ kubectl create ns elastic-kibana
@@ -378,7 +350,7 @@ In the Index patterns page, hit `Create Index pattern` button.
 
 <br/><br/>
 
-#### Delete all  
+### Delete all  
 To delete everything created from this tutorial, run the following command:  
 ```shell
 $ kubectl delete all --all -n elastic-kibana
@@ -404,6 +376,11 @@ $ kubectl delete pod counter
 * [Logging Architecture](https://kubernetes.io/docs/concepts/cluster-administration/logging/)  
 * [Kubernetes Logging Simplified – Pt 1: Applications](https://observiq.com/blog/kubernetes-logging-simplified-pt-1-applications/)  
 * [A Practical Guide to Kubernetes Logging](https://logz.io/blog/a-practical-guide-to-kubernetes-logging/)  
+  * Kubernetes Node logging  
+    When a container running on Kubernetes writes its logs to `stdout` or `stderr` streams, they are picked up by the `kubelet` service running on that node, and are delegated to the container engine for handling based on the logging driver configured in Kubernetes.  
+
+    In most cases, Docker container logs will end up in the `/var/log/containers` directory on your host. Docker supports multiple logging drivers but, unfortunately, Kubernetes API does not support driver configuration.  
+
 * [Introduction to Fluentd on Kubernetes](https://github.com/marcel-dempers/docker-development-youtube-series/tree/master/monitoring/logging/fluentd/kubernetes)  
 * [5 Sharing images with Docker Hub and other registries](https://livebook.manning.com/book/learn-docker-in-a-month-of-lunches/chapter-5/4)  
   Shows anatomy of a Docker image reference  
