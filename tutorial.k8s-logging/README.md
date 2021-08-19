@@ -382,7 +382,9 @@ In the Index patterns page, hit `Create Index pattern` button.
 To delete everything created from this tutorial, run the following command:  
 ```shell
 $ kubectl delete all --all -n elastic-kibana
+$ kubectl delete ns elastic-kibana
 $ kubectl delete all --all -n fluentd
+$ kubectl delete ns fluentd
 $ kubectl delete pod counter
 ```  
 
