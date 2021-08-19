@@ -28,7 +28,7 @@ Also includes different versions of [*fluentd* docker images](https://github.com
 
 Move to working path:  
   ```shell
-  cd {Project Root}/tutorial.k8s-logging/reousrces/docker-image  
+  cd {Project Root}/tutorial.k8s-logging/reousrces/docker-image
   ```
 
 Build image and push to a registry:  
@@ -151,7 +151,7 @@ data:
 
 Move to working path:  
   ```shell
-  $ cd {Project Root}/tutorial.k8s-logging/reousrces  
+  $ cd {Project Root}/tutorial.k8s-logging/reousrces
   ```
 
 Create *fluentd* namespace:  
@@ -224,7 +224,7 @@ $ kubectl apply -f fluentd.yaml
 
 And To check pod is up and running, run the following command:  
 ```shell
-$ kubectl -n fluentd get pods  
+$ kubectl -n fluentd get pods
 ```
 
 <br/><br/>
@@ -241,12 +241,12 @@ $ kubectl apply -f counter.yaml
 
 And To check pod is up and running, run the following command:  
 ```shell
-$ kubectl get pods  
+$ kubectl get pods
 ```
 
 And if run `kubectl logs` for that pod, we can see writing logs:  
 ```shell
-$ kubectl logs counter  
+$ kubectl logs counter
 ```
 
 Next, let's see how *fluentd* collects those logs.  
@@ -259,15 +259,15 @@ So, let's go inside that *fluentd* pod and look at the log files.
 
 To grab the pod name in the *fluentd* namespace, run the following command:  
 ```shell
-$ kubectl -n fluentd get pods  
+$ kubectl -n fluentd get pods
   NAME ...
-  fluentd-zzknz ...
+  fluentd-abcde ...
 ```
 
 Attach bash terminal inside of the *fluentd* pod, run the following command:  
 ```shell
-$ kubectl -n fluentd exec -it fluentd-zzknz bash
-  /home/fluentd # 
+$ kubectl -n fluentd exec -it fluentd-abcde bash
+  root@fluentd-abcde:/home/fluentd# 
 ```
 
 Now, we are inside of the pod.
@@ -278,7 +278,8 @@ We also see a `fluentd-containers.log.pos` file, this is the position file where
 
 Run `ls` in the `containers` direcotry. to see log file.  
 ```shell
-$ ls containers  
+root@fluentd-abcde:/home/fluentd# cd /var/log
+root@fluentd-abcde:/home/fluentd# ls containers
   ...
   counter_default_count-...
   ...
@@ -286,6 +287,11 @@ $ ls containers
 
 There is count counter pod in the default namespace. And if run `ls -l` to that specific log file, we can see that that file actually sym linked to `/var/log/pods`.  
 Everything under `/var/log/containers` is sym linked to `/var/log/pods`.  
+
+```
+root@fluentd-abcde:/var/log# ls -l containers/counter_default_count-08a97e884e6c9473d29edf8d6764ce5dce7413ddce2830eb84167d3166578610.log
+lrwxrwxrwx 1 root root 78 Aug 19 06:44 containers/counter_default_count-08a97e884e6c9473d29edf8d6764ce5dce7413ddce2830eb84167d3166578610.log -> /var/log/pods/default_counter_16be5a1e-adac-4b77-93b2-d09ae7260ee1/count/0.log
+```
 
 If run `cat` on that file in the `/var/log/pods`, can see raw logs on the node.  
 Raw logs are being stored under `/var/log/pods`.  
@@ -328,13 +334,13 @@ $ kubectl create ns elastic-kibana
 
 To deploy a elastic search and kibana:  
 ```shell
-$ kubectl apply -f elastic/elastic-demo.yaml
-$ kubectl apply -f elastic/kibana-demo.yaml
+$ kubectl -n elastic-kibana apply -f elastic/elastic-demo.yaml
+$ kubectl -n elastic-kibana apply -f elastic/kibana-demo.yaml
 ```
 
 To check a elastic search and kibana is running, run the following command:  
 ```shell
-$ kubectl -n elastic-kibana get pods  
+$ kubectl -n elastic-kibana get pods
 ```
 
 To access to a kibana, run the following command:  
@@ -362,13 +368,23 @@ To create a new pod, just delete current:
 ```shell
 $ kubectl -n fluentd get pods
   NAME ...
-  fluentd-7trjt
-$ kubectl -n fluentd delete po fluentd-7trjt
+  fluentd-abcde
+$ kubectl -n fluentd delete po fluentd-abcde
 ```
 
 We don't have any data yet.  
 After some time, In kibana go to `Menu > Kibana > Discover`.  
 In the Index patterns page, hit `Create Index pattern` button.  
+
+<br/><br/>
+
+#### Delete all  
+To delete everything created from this tutorial, run the following command:  
+```shell
+$ kubectl delete all --all -n elastic-kibana
+$ kubectl delete all --all -n fluentd
+$ kubectl delete pod counter
+```  
 
 <br/><br/><br/>
 
