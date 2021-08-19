@@ -2,9 +2,16 @@
 
 Written with reference to [*Fluentd* on Kubernetes: Log collection explained](https://www.youtube.com/watch?v=6kmHvXdAzIM&t=316s) by *That DevOps Guy*.  
 
-<br/>
+<br/><br/><br/>
 
-## [Logging Architecture from Kubernetes](https://kubernetes.io/docs/concepts/cluster-administration/logging/)  
+## Objectives  
+* Understand logging architecture    
+* Create a node logging agent  
+  * fluentd *daemonset*    
+
+<br/><br/><br/>
+
+## [Kubernetes Logging Architecture](https://kubernetes.io/docs/concepts/cluster-administration/logging/)  
 
 Application logs can help you understand what is happening inside your application. The logs are particularly useful for debugging problems and monitoring cluster activity.  
 
@@ -23,9 +30,29 @@ Cluster-level logging architectures require a separate backend to store, analyze
 
   Similar to the container logs, system component logs in the `/var/log` directory should be rotated. In Kubernetes clusters brought up by the *kube-up.sh* script, those logs are configured to be rotated by the logrotate tool daily or once the size exceeds 100MB.  
 
+<br/>
+
+### [Node-level logging agent](https://kubernetes.io/docs/concepts/cluster-administration/logging/#using-a-node-logging-agent)  
+
+<figure>
+<div style="text-align:center">
+  <a href="https://d33wubrfki0l68.cloudfront.net/2585cf9757d316b9030cf36d6a4e6b8ea7eedf5a/1509f/images/docs/user-guide/logging/logging-with-node-agent.png">
+  <img src="https://d33wubrfki0l68.cloudfront.net/2585cf9757d316b9030cf36d6a4e6b8ea7eedf5a/1509f/images/docs/user-guide/logging/logging-with-node-agent.png" style="width: 360px; max-width: 100%; height: auto" title="node-level logging agent" />
+  </a>
+</div>
+</figure>
+
+You can implement cluster-level logging by including a node-level logging agent on each node.  
+The logging agent is a dedicated tool that exposes logs or pushes logs to a backend. Commonly, the logging agent is a container that has access to a directory with log files from all of the application containers on that node.  
+
 <br/><br/>
 
 ## [Introduction to *Fluentd* on Kubernetes](https://github.com/marcel-dempers/docker-development-youtube-series/blob/master/monitoring/logging/fluentd/kubernetes/README.md)  
+
+The most important components to understand is the fluentd `tail` plugin.
+This plugin is used to read logs from containers and pods on the file system and collect them.  
+
+<br/>
 
 ### [*fluentd* manifests](https://github.com/fluent/fluentd-kubernetes-daemonset)  
 Before we start check out the official *fluentd* repo [fluent/fluentd-kubernetes-daemonset](https://github.com/fluent/fluentd-kubernetes-daemonset) which has a lot of implementations run *fluentd* as a *daemonset*. Send logs to *azureblob*, *cloudwatch*, *elasticsearch*, *gcs*, *forward to other fluentd instances* and so on.   
@@ -61,7 +88,7 @@ Now, we have custom *fluentd* image that can run in our kubernetes cluster to co
 
 We want to run this image in a pod on every node in our cluster.  
 And also want to look at how to collect the logs from each node in the cluster.   
-If you don't want to build your own, you can also refer to docker hub and use the [*fluentd* daemonset images](https://hub.docker.com/r/fluent/fluentd-kubernetes-daemonset/).  
+If you don't want to build your own, you can also refer to docker hub and use the [*fluentd daemonset* images](https://hub.docker.com/r/fluent/fluentd-kubernetes-daemonset/).  
 
 <br/><br/>
 
@@ -147,11 +174,11 @@ Let's deploy our `configmap`:
 
 <br/><br/>
 
-### The daemonset  
+### The *daemonset*  
 Let's go ahead and see what the kubernetes daemon sets for *fluentd* looks like.  
-The daemonset will mount all these config files as well as location where the logs are stored on the kubernetes node.  
+The *daemonset* will mount all these config files as well as location where the logs are stored on the kubernetes node.  
 
-Daemonset is in [`fluentd.yaml`](resources/fluentd.yaml).  
+*Daemonset* is defined in [`fluentd.yaml`](resources/fluentd.yaml).  
   ```yaml
   ...
     volumeMounts:
@@ -180,7 +207,7 @@ Volumes `varlog` and `varlibdockercontainers` are both host path, so we're mount
 <br/><br/>
 
 ### Permissions  
-Before we deploy our daemonset in order for *fluentd* to read the metadata of each pod and add that metadata to each log entry, we have to deploy a *fluentd-rbac* file and we need to give *fluentd* access to be able to call the kubernetes API.  
+Before we deploy our *daemonset* in order for *fluentd* to read the metadata of each pod and add that metadata to each log entry, we have to deploy a *fluentd-rbac* file and we need to give *fluentd* access to be able to call the kubernetes API.  
 So to do that we have a [fluentd-rbac.yaml](resoureces/../resources/fluentd-rbac.yaml) and here we just give it a cluster role and role binding and we allow it to basically get, list and watch *pods* and *namespaces* in the cluster.  
 And we also create a small service account that we bind these roles to.  
 To create service account the `ClusterRole` and the `ClusterRoleBinding` run the following command:  
@@ -188,8 +215,8 @@ To create service account the `ClusterRole` and the `ClusterRoleBinding` run the
 $ kubectl apply -f fluentd-rbac.yaml
 ``` 
 
-This will go ahead and create our service account the role and the role binding which we can use on the daemonset.  
-And we take a look at the daemonset [fluentd.yaml](resources/fluentd.yaml), 
+This will go ahead and create our service account the role and the role binding which we can use on the *daemonset*.  
+And we take a look at the *daemonset* [fluentd.yaml](resources/fluentd.yaml), 
 we're passing in specific service account, name which is *fluentd*.  
 ```yaml
   ...
@@ -198,7 +225,7 @@ we're passing in specific service account, name which is *fluentd*.
   ...
 ```
 
-To deploy the daemonset, run the following command:  
+To deploy the *daemonset*, run the following command:  
 ```shell
 $ kubectl apply -f fluentd.yaml
 ```

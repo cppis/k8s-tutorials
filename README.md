@@ -131,6 +131,21 @@ Using unix socket for fastcgi_pass in [tutorial: nginx + php-fpm deployment](tut
 ### [tutorial: k8s logging](tutorial.k8s-logging/README.md)  
 Written with reference to [*Fluentd* on Kubernetes: Log collection explained](https://www.youtube.com/watch?v=6kmHvXdAzIM&t=316s) by *That DevOps Guy*.  
 
+<figure>
+<div style="text-align:center">
+  <a href="https://d33wubrfki0l68.cloudfront.net/2585cf9757d316b9030cf36d6a4e6b8ea7eedf5a/1509f/images/docs/user-guide/logging/logging-with-node-agent.png">
+  <img src="https://d33wubrfki0l68.cloudfront.net/2585cf9757d316b9030cf36d6a4e6b8ea7eedf5a/1509f/images/docs/user-guide/logging/logging-with-node-agent.png" style="width: 360px; max-width: 100%; height: auto" title="node-level logging agent" />
+  </a>
+</div>
+</figure>
+
+Implement cluster-level logging by including a node-level logging agent on each node.  
+
+#### Objectives  
+* Understand logging architecture    
+* Create a node logging agent  
+  * fluentd *daemonset*    
+
 <br/><br/><br/>
 
 ## Tips  
