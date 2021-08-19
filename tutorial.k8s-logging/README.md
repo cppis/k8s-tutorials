@@ -33,9 +33,20 @@ Move to working path:
 
 Build image and push to a registry:  
   ```shell
-  $ docker build . -t k8s-logging/fluentd
-  $ docker push k8s-logging/fluentd
+  $ docker build . -t fluentd-demo:v0.0.1
   ```
+
+  > if you use remote registry like docker hub, push image to registry:  
+  > ```shell
+  > $ docker push {Docker Hub ID}/fluentd-demo:v0.0.1
+  > ```
+
+  > #### anatomy of a docker image reference  
+  >   `docker.io/cppis/fluentd-demo:latest`  
+  >   * docker.io: domain of registry  
+  >   * cppis: image owner
+  >   * fluentd-demo: image name
+  >   * latest: image tag  
 
 Now, we have custom *fluentd* image that can run in our kubernetes cluster to collect logs.  
 
@@ -140,7 +151,7 @@ data:
 
 Move to working path:  
   ```shell
-  cd {Project Root}/tutorial.k8s-logging/reousrces  
+  $ cd {Project Root}/tutorial.k8s-logging/reousrces  
   ```
 
 Create *fluentd* namespace:  
@@ -361,8 +372,20 @@ In the Index patterns page, hit `Create Index pattern` button.
 
 <br/><br/><br/>
 
+## Troubleshootings  
+### /usr/bin/env: ‘sh\r’: no such file or directory  
+* change line endings to `LF`
+* change git autocrlf config to `false`  
+  ```shell
+  $ git config --global core.autocrlf false
+  ```
+
+<br/><br/><br/>
+
 ## References  
 * [Logging Architecture](https://kubernetes.io/docs/concepts/cluster-administration/logging/)  
 * [Kubernetes Logging Simplified – Pt 1: Applications](https://observiq.com/blog/kubernetes-logging-simplified-pt-1-applications/)  
 * [A Practical Guide to Kubernetes Logging](https://logz.io/blog/a-practical-guide-to-kubernetes-logging/)  
 * [Introduction to Fluentd on Kubernetes](https://github.com/marcel-dempers/docker-development-youtube-series/tree/master/monitoring/logging/fluentd/kubernetes)  
+* [5 Sharing images with Docker Hub and other registries](https://livebook.manning.com/book/learn-docker-in-a-month-of-lunches/chapter-5/4)  
+  Shows anatomy of a Docker image reference  
