@@ -1,4 +1,4 @@
-# tutorial.01
+# tutorial: nginx + php-fpm pod
 
 This tutorial shows how to create a `nginx + php-fpm` app in a Kubernetes. 
 
@@ -7,7 +7,7 @@ This tutorial shows how to create a `nginx + php-fpm` app in a Kubernetes.
 <figure>
 <div style="text-align:center">
   <a href="https://drive.google.com/uc?export=view&id=1eweNr6OMtE86-tRa0MfGTdy4Kfpyo_3u">
-  <img src="https://drive.google.com/uc?export=view&id=1eweNr6OMtE86-tRa0MfGTdy4Kfpyo_3u" style="width: 560px; max-width: 100%; height: auto" title="tutorial.01" />
+  <img src="https://drive.google.com/uc?export=view&id=1eweNr6OMtE86-tRa0MfGTdy4Kfpyo_3u" style="width: 560px; max-width: 100%; height: auto" title="tutorial.nginx+phpfpm-pod" />
   </a>
 </div>
 </figure>
@@ -17,7 +17,7 @@ This tutorial shows how to create a `nginx + php-fpm` app in a Kubernetes.
 ## Run  
 * Move to working path:  
   ```shell
-  cd {Project Root}/tutorial.01/  
+  cd {Project Root}/tutorial.nginx+phpfpm-pod/  
   ```
 
 <br/>
