@@ -1,7 +1,0 @@
-# apiVersion: v1
-# kind: ConfigMap
-# metadata:
-#   name: tut05-php-configmap
-# data:
-#   php.ini: |-
-# {{ .Files.Get "conf/www.conf" | indent 4 }}

@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tut05-nginx-php
+  labels:
+    app: tut05-nginx-php
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tut05-nginx-php
+  template:
+    metadata:
+      labels:
+        app: tut05-nginx-php
+    spec:
+      volumes:
+        - name: tut05-app
+          emptyDir: {}
+        - name: tut05-sock
+          emptyDir: {}
+        - name: tut05-nginx-volume
+          configMap:
+            name: tut05-nginx-configmap
+            items:
+              - key: config
+                path: site.conf
+      containers:
+        - name: php
+          image: tut01-php:1.0.0
+          volumeMounts:
+            - name: tut05-app
+              mountPath: /var/www/html
+            - name: tut05-sock
+              mountPath: /var/run
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  [
+                    "/bin/sh",
+                    "-c",
+                    "cp -r /app/. /var/www/html && chmod 755 -R /var/www/html && chown www-data:www-data -R /var/www/html && chmod 755 -R /sock && chown www-data:www-data -R /sock",
+                  ]
+        - name: nginx
+          image: nginx:1.21.0
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: tut05-app
+              mountPath: /var/www/html
+            - name: tut05-sock
+              mountPath: /var/run
+            - name: tut05-nginx-volume
+              mountPath: /etc/nginx/conf.d

@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php
+  labels:
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: php
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: php
+        tier: backend
+    spec:
+      volumes:
+        - name: tut05-volume
+          persistentVolumeClaim:
+            claimName: tut05-volume-claim
+        - name: tut05-sock
+          persistentVolumeClaim:
+            claimName: tut05-sock-claim
+      containers:
+        - name: php
+          image: tut01-php:1.0.0
+          volumeMounts:
+            - name: tut05-volume
+              mountPath: /var/www/html
+            - name: tut05-sock
+              mountPath: /sock
+      initContainers:
+        - name: install
+          image: tut01-php:1.0.0
+          volumeMounts:
+            - name: tut05-volume
+              mountPath: /var/www/html
+          command:
+            - /bin/sh
+            - "-c"
+            - "cp -r /app/. /var/www/html && chmod 755 -R /var/www/html && chown www-data:www-data -R /var/www/html"
+        - name: install-sock
+          image: tut01-php:1.0.0
+          volumeMounts:
+            - name: tut05-sock
+              mountPath: /sock
+          command:
+            - /bin/sh
+            - "-c"
+            - "chmod 755 -R /sock && chown www-data:www-data -R /sock"

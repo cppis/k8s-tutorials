@@ -94,40 +94,6 @@ Shows remove use of persistent volume in [tutorial: nginx + php-fpm deployment](
 
 <br/><br/>
 
-### [tutorial: nginx + socket php-fpm deployment using pv](tutorial.nginx+socket-phpfpm-deployment-using-pv/README.md)  
-Using unix socket for fastcgi_pass in [tutorial: nginx + php-fpm deployment using pv](tutorial.nginx+phpfpm-deployment-using-pv/README.md). 
-
-> This tutorial uses a `tut01-php:1.0.0` image,  
-> Which is built from Dockerfile in [tutorial: nginx + php-fpm pod](tutorial.nginx+phpfpm-pod/README.md)  
-
-  working...
-
-#### Objectives  
-* K8s deployment  
-  * Nginx container  
-  * PHP-FPM container   
-    * Using unix socket for *fastcgi_pass*  
-
-<br/><br/>
-
-### [tutorial: nginx + socket php-fpm deployment](tutorial.nginx+socket-phpfpm-deployment/README.md)  
-Using unix socket for fastcgi_pass in [tutorial: nginx + php-fpm deployment](tutorial.nginx+phpfpm-deployment/README.md). 
-
-> This tutorial uses a `tut01-php:1.0.0` image,  
-> Which is built from Dockerfile in [tutorial: nginx + php-fpm pod](tutorial.nginx+phpfpm-pod/README.md)  
-
-  working...
-
-#### Objectives  
-* Create a k8s *deployment*  
-  * Nginx container  
-  * PHP-FPM container  
-    * Using unix socket for *fastcgi_pass*  
-* Create a k8s Persistent Volume  
-  * Bind the volume to the deployment  
-
-<br/><br/>
-
 ### [tutorial: k8s logging](tutorial.k8s-logging/README.md)  
 Written with reference to [*Fluentd* on Kubernetes: Log collection explained](https://www.youtube.com/watch?v=6kmHvXdAzIM&t=316s) by *That DevOps Guy*.  
 
@@ -145,6 +111,40 @@ Implement cluster-level logging by including a node-level logging agent on each 
 * Understand logging architecture    
 * Create a node logging agent  
   * fluentd *daemonset*    
+
+<br/><br/>
+
+### [tutorial: nginx + unixsocket php-fpm deployment using pv](tutorial.nginx+unixsocket-phpfpm-deployment-using-pv/README.md)  
+Using unix socket for fastcgi_pass in [tutorial: nginx + php-fpm deployment using pv](tutorial.nginx+phpfpm-deployment-using-pv/README.md). 
+
+> This tutorial uses a `tut01-php:1.0.0` image,  
+> Which is built from Dockerfile in [tutorial: nginx + php-fpm pod](tutorial.nginx+phpfpm-pod/README.md)  
+
+  working...
+
+#### Objectives  
+* K8s deployment  
+  * Nginx container  
+  * PHP-FPM container   
+    * Using unix socket for *fastcgi_pass*  
+
+<br/><br/>
+
+### [tutorial: nginx + unixsocket php-fpm deployment](tutorial.nginx+unixsocket-phpfpm-deployment/README.md)  
+Using unix socket for fastcgi_pass in [tutorial: nginx + php-fpm deployment](tutorial.nginx+phpfpm-deployment/README.md). 
+
+> This tutorial uses a `tut01-php:1.0.0` image,  
+> Which is built from Dockerfile in [tutorial: nginx + php-fpm pod](tutorial.nginx+phpfpm-pod/README.md)  
+
+  working...
+
+#### Objectives  
+* Create a k8s *deployment*  
+  * Nginx container  
+  * PHP-FPM container  
+    * Using unix socket for *fastcgi_pass*  
+* Create a k8s Persistent Volume  
+  * Bind the volume to the deployment  
 
 <br/><br/><br/>
 

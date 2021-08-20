@@ -1,4 +1,4 @@
-# tutorial: nginx + socket php-fpm deployment using pv
+# tutorial: nginx + unixsocket php-fpm deployment using pv
 
 Using unix socket for fastcgi_pass in [tutorial: nginx + php-fpm deployment using pv](../tutorial.nginx+phpfpm-deployment-using-pv/README.md). 
 
@@ -16,7 +16,7 @@ Using unix socket for fastcgi_pass in [tutorial: nginx + php-fpm deployment usin
 
 Move to working path:  
   ```shell
-  cd {Project Root}/tutorial.nginx+socket-phpfpm-deployment-using-pv/  
+  cd {Project Root}/tutorial.nginx+unixsocket-phpfpm-deployment-using-pv/  
   ```
 
 <br/>
