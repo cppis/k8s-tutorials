@@ -1,12 +1,15 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: tut02-nginx-config
+  name: tut04-nginx-configmap
   labels:
     tier: backend
 data:
   config: |
     server {
+      listen 80 default_server;
+      listen [::]:80 default_server;
+
       index index.php index.html;
       error_log  /var/log/nginx/error.log;
       access_log /var/log/nginx/access.log;
@@ -20,7 +23,7 @@ data:
       location ~ .php$ {
           try_files $uri =404;
           fastcgi_split_path_info ^(.+.php)(/.+)$;
-          fastcgi_pass php:9000;
+          fastcgi_pass 127.0.0.1:9000;
           fastcgi_index index.php;
           include fastcgi_params;
           fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
