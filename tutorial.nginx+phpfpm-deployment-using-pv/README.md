@@ -4,16 +4,6 @@ Written with reference to [Kubernetes Basic PHP 7.3 Application with Nginx on Go
 
 <br/>
 
-<figure>
-<div style="text-align:center">
-  <a href="https://drive.google.com/uc?export=view&id=1QpH2nVmUOwrx9nfv3S0QJKeilWSb9ClO">
-  <img src="https://drive.google.com/uc?export=view&id=1QpH2nVmUOwrx9nfv3S0QJKeilWSb9ClO" style="width: 480px; max-width: 100%; height: auto" title="tutorial.nginx+phpfpm-deployment" />
-  </a>
-</div>
-</figure>
-
-<br/>
-
 ## Objectives  
 * Create a k8s *deployment*  
   * Nginx container  

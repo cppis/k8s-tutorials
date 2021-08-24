@@ -5,6 +5,16 @@ Shows deploy a new php container in [tutorial: nginx + php-fpm deployment](../tu
 > This tutorial uses a `tut01-php:1.0.0` image,  
 > Which is built from Dockerfile in [tutorial: nginx + php-fpm pod](../tutorial.nginx+phpfpm-pod/README.md)   
 
+<br/>
+
+<figure>
+<div style="text-align:center">
+  <a href="https://drive.google.com/uc?export=view&id=1QpH2nVmUOwrx9nfv3S0QJKeilWSb9ClO">
+  <img src="https://drive.google.com/uc?export=view&id=1QpH2nVmUOwrx9nfv3S0QJKeilWSb9ClO" style="width: 480px; max-width: 100%; height: auto" title="tutorial.nginx+phpfpm-deployment" />
+  </a>
+</div>
+</figure>
+
 <br/><br/><br/>
 
 ## Objectives  
