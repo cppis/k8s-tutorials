@@ -146,6 +146,11 @@ Using unix socket for fastcgi_pass in [tutorial: nginx + php-fpm deployment](tut
 * Create a k8s Persistent Volume  
   * Bind the volume to the deployment  
 
+<br/><br/>
+
+# [tutorial: emqx](tutorial.emqx/README.md)  
+Written with reference to [Building K8S cluster of EMQ X starting from scratch](https://www.emqx.com/en/blog/emqx-mqtt-broker-k8s-cluster)  
+
 <br/><br/><br/>
 
 ## Tips  
@@ -160,6 +165,11 @@ $ docker build . -t my-php-app:1.0.0
 <br/>
 
 ### kubernetes  
+Discovering builtin services:
+```shell
+$ kubectl cluster-info
+```
+
 Apply a kubernetes config:  
 ```shell
 $ kubectl apply -f {k8s config path or yaml}

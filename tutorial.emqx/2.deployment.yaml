@@ -1,13 +1,10 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
-  name: emqx-statefulset
+  name: emqx-deployment2
   labels:
     app: emqx
 spec:
-  serviceName: emqx-headless
-  updateStrategy:
-    type: RollingUpdate
   replicas: 3
   selector:
     matchLabels:
@@ -20,7 +17,7 @@ spec:
       serviceAccountName: emqx
       containers:
         - name: emqx
-          image: emqx/emqx:v4.1-rc.1
+          image: emqx/emqx:4.3.7
           ports:
             - name: mqtt
               containerPort: 1883
@@ -36,4 +33,4 @@ spec:
               containerPort: 18083
           envFrom:
             - configMapRef:
-                name: emqx-config
+                name: emqx-config2

@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emqx-deployment
+  labels:
+    app: emqx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: emqx
+  template:
+    metadata:
+      labels:
+        app: emqx
+    spec:
+      containers:
+        - name: emqx
+          image: emqx/emqx:4.3.7
+          ports:
+            - name: mqtt
+              containerPort: 1883
+            #- name: mqttssl
+            #  containerPort: 8883
+            #- name: mgmt
+            #  containerPort: 8081
+            #- name: ws
+            #  containerPort: 8083
+            #- name: wss
+            #  containerPort: 8084
+            #- name: dashboard
+            #  containerPort: 18083
+          env:
+            - name: EMQX_NAME
+              value: emqx
+            - name: EMQX_CLUSTER__DISCOVERY
+              value: k8s
+            - name: EMQX_CLUSTER__K8S__APP_NAME
+              value: emqx
+            - name: EMQX_CLUSTER__K8S__SERVICE_NAME
+              value: emqx-service
+            - name: EMQX_CLUSTER__K8S__APISERVER
+              value: "https://kubernetes.docker.internal:6443"
+              #value: "https://kubernetes.default.svc:443"
+            - name: EMQX_CLUSTER__K8S__NAMESPACE
+              value: default

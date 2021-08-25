@@ -1,11 +1,14 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: emqx-deployment
+  name: emqx-statefulset
   labels:
     app: emqx
 spec:
   replicas: 3
+  serviceName: emqx-headless
+  updateStrategy:
+    type: RollingUpdate
   selector:
     matchLabels:
       app: emqx
@@ -14,10 +17,14 @@ spec:
       labels:
         app: emqx
     spec:
+      #volumes:
+      #  - name: emqx-data
+      #    persistentVolumeClaim:
+      #      claimName: emqx-pvc
       serviceAccountName: emqx
       containers:
         - name: emqx
-          image: emqx/emqx:v4.1-rc.1
+          image: emqx/emqx:4.3.7
           ports:
             - name: mqtt
               containerPort: 1883
@@ -33,4 +40,17 @@ spec:
               containerPort: 18083
           envFrom:
             - configMapRef:
-                name: emqx-config
+                name: emqx-config4
+          volumeMounts:
+            - name: emqx-pvc #emqx-data
+              mountPath: "/opt/emqx/data/mnesia"
+  volumeClaimTemplates:
+    - metadata:
+        name: emqx-pvc
+        #annotations:
+        #  volume.alpha.kubernetes.io/storage-class: manual
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi
