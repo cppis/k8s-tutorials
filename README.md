@@ -196,6 +196,15 @@ $ kubectl exec --stdin --tty {Pod Name} -- /bin/bash
 $ kubectl exec -i -t {Pod Name} --container {Container Name} -- /bin/bash
 ```
 
+[Changing the default editor of `kubectl edit`](https://jneate.github.io/technology/2019/11/14/changing-the-default-editor-of-kubectl-edit.html)  
+When use Kubernetes, It is often necessary to modify settings via a `kubectl edit`.  
+On Windows it’s notepad by default.  
+If you want to change it to VS Code, set env var `KUBE_EDITOR`:  
+```shell
+$ set KUBE_EDITOR=code -w
+$ kubectl edit ...
+```
+
 <br/>
 
 ### minikube  
