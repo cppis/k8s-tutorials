@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: emqx-statefulset
+  name: emqx-statefulset3
   labels:
     app: emqx
 spec:
-  serviceName: emqx-headless
+  replicas: 3
+  serviceName: emqx-headless3
   updateStrategy:
     type: RollingUpdate
-  replicas: 3
   selector:
     matchLabels:
       app: emqx
@@ -17,6 +17,10 @@ spec:
       labels:
         app: emqx
     spec:
+      #volumes:
+      #  - name: emqx-data
+      #    persistentVolumeClaim:
+      #      claimName: emqx-pvc
       serviceAccountName: emqx
       containers:
         - name: emqx
@@ -37,3 +41,16 @@ spec:
           envFrom:
             - configMapRef:
                 name: emqx-config3
+          volumeMounts:
+            - name: emqx-pvc #emqx-data
+              mountPath: "/opt/emqx/data/mnesia"
+  volumeClaimTemplates:
+    - metadata:
+        name: emqx-pvc
+        #annotations:
+        #  volume.alpha.kubernetes.io/storage-class: manual
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi

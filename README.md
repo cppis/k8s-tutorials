@@ -215,6 +215,9 @@ $ set KUBE_EDITOR=code -w
 $ kubectl edit ...
 ```
 
+[Debugging DNS Resolution](https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/)  
+Create a simple Pod to use as a test environment  
+
 <br/>
 
 ### minikube  
