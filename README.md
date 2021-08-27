@@ -148,7 +148,7 @@ Using unix socket for fastcgi_pass in [tutorial: nginx + php-fpm deployment](tut
 
 <br/><br/>
 
-# [tutorial: emqx](tutorial.emqx/README.md)  
+### [tutorial: emqx](tutorial.emqx/README.md)  
 Written with reference to [Building K8S cluster of EMQ X starting from scratch](https://www.emqx.com/en/blog/emqx-mqtt-broker-k8s-cluster)  
 
 <br/><br/><br/>
