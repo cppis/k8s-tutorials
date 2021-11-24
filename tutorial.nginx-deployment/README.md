@@ -84,6 +84,13 @@ Delete deployment:
 $ kubectl delete -f app/deployment.yaml
 ```
 
+<br/>
+
+Delete exposed service:  
+```shell
+$ kubectl delete service my-service
+```
+
 <br/><br/><br/>
 
 ## Reference  
