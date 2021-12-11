@@ -11,7 +11,7 @@ Written with reference to [Run a Stateless Application Using a Deployment](https
 
 ## Run  
 Move to working path:  
-  ```shell
+  ```bash
   cd {Project Root}/tutorial.nginx-deployment/  
   ```
 
@@ -42,51 +42,76 @@ spec:
 <br/>
 
 Create a Deployment based on the YAML file:  
-```shell
-$ kubectl apply -f app/deployment.yaml
+```bash
+kubectl apply -f app/deployment.yaml
 ```
 
 <br/>
 
 Display information about the Deployment:  
-```shell
-$ kubectl describe deployment nginx-deployment
+```bash
+kubectl get pods  
   NAME                  READY     STATUS    RESTARTS   AGE
- nginx-deployment-...   1/1       Running   0          16h
- nginx-deployment-...   1/1       Running   0          16h
+  nginx-deployment-...   1/1       Running   0          16s
+  nginx-deployment-...   1/1       Running   0          16s
 ```
 
 <br/>
 
 List the Pods created by the deployment:  
-```shell
-$ kubectl describe pod <pod-name>
+```bash
+kubectl describe pod <pod-name>
 ```
 
 <br/>
 
 Display information about a Pod:  
-```shell
-$ kubectl get pods -l app=nginx
+```bash
+kubectl get pods -l app=nginx
 ```
 
 <br/>
 
-Expose service:  
-```
-$ kubectl expose deployment nginx-deployment --type=LoadBalancer --name=my-service -l app=nginx
-```
-
-<br/>
-
-Delete deployment:  
-```shell
-$ kubectl delete -f app/deployment.yaml
+Expose a service:  
+```bash
+kubectl expose deployment nginx-deployment --type=LoadBalancer --name=my-service -l app=nginx
 ```
 
 <br/>
 
-Delete exposed service:  
+Get exposed port of a service:  
+```bash
+APP_PORT=$(kubectl get -o jsonpath="{.spec.ports[0].nodePort}" services my-service)
+```
+
+<br/>
+
+Check a service:  
+```bash
+wget localhost:$APP_PORT
+
+  --2021-12-11 23:39:29--  http://localhost:31894/
+  Resolving localhost (localhost)... 127.0.0.1
+  Connecting to localhost (localhost)|127.0.0.1|:31894... connected.
+  HTTP request sent, awaiting response... 200 OK
+  Length: 612 [text/html]
+  Saving to: ‘index.html’
+
+  index.html                       100%[==========================================================>]     612  --.-KB/s    in 0s
+
+  2021-12-11 23:39:29 (119 MB/s) - ‘index.html’ saved [612/612]
+```
+
+<br/>
+
+Delete a deployment:  
+```bash
+kubectl delete -f app/deployment.yaml
+```
+
+<br/>
+
+Delete an exposed service:  
 ```shell
 $ kubectl delete service my-service
 ```
