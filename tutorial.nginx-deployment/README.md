@@ -74,8 +74,14 @@ kubectl get pods -l app=nginx
 
 Expose a service:  
 ```bash
-kubectl expose deployment nginx-deployment --type=LoadBalancer --name=my-service -l app=nginx
+kubectl expose deployment nginx-deployment --type=NodePort --name=my-service -l app=nginx
 ```
+
+> Note: The `type=LoadBalancer` service is backed by external cloud providers,  
+> which is not covered in this example, please refer to [this page](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer) for the details.
+ 
+> Note: If the external IP address is shown as <pending>,  
+> wait for a minute and enter the same command again. 
 
 <br/>
 

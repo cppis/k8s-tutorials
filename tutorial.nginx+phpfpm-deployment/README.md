@@ -15,7 +15,7 @@ Shows remove use of persistent volume in [tutorial: nginx+php-fpm deployment usi
 
 Move to working path:  
   ```shell
-  cd {Project Root}/tutorial.nginx+phpfpm-deployment-using-pv/  
+  cd {Project Root}/tutorial.nginx+phpfpm-deployment/  
   ```
 
 <br/>

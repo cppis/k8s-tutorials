@@ -22,7 +22,7 @@ Written with reference to [Kubernetes Basic PHP 7.3 Application with Nginx on Go
 
 Move to working path:  
   ```shell
-  cd {Project Root}/tutorial.nginx+phpfpm-deployment/  
+  cd {Project Root}/tutorial.nginx+phpfpm-deployment-using-pv/  
   ```
 
 <br/>
